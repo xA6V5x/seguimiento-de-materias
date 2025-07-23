@@ -1,0 +1,38 @@
+{
+     "version": "2.0.0",
+     "tasks": [
+          {
+               // Añade un icono al ejecutable seguimiento-de-materias.exe
+               "label": "Compilar Recursos",
+               "type": "shell",
+               "command": "C:/msys64/ucrt64/bin/windres.exe",
+               "args": ["res/resources.rc", "-o", "res/resources.o"],
+               "options": {
+                    "cwd": "${workspaceFolder}"
+               },
+               "problemMatcher": [],
+               "group": "build"
+          },
+          {
+               // Compila todos los archivos .c del proyecto y genera el ejecutable principal
+               "label": "Compilar C - todos los .c",
+               "type": "shell",
+               "command": "gcc",
+               "args": [
+                    "-g",
+                    "src/*.c",
+                    "res/resources.o",
+                    "-I",
+                    "headers",
+                    "-o",
+                    "seguimiento-de-materias.exe"
+               ],
+               "options": {
+                    "cwd": "${workspaceFolder}"
+               },
+               "group": "build",
+               "problemMatcher": ["$gcc"],
+               "dependsOn": ["Compile Resources"]
+          }
+     ]
+}

@@ -1,0 +1,8 @@
+// resources.rc
+#include "winuser.h" // Necesario para ICON
+
+// Define un ID para tu icono (puedes usar cualquier número entero)
+#define IDI_MY_ICON 101
+
+// Enlaza el icono al ID
+IDI_MY_ICON ICON "seguimiento_de_materias_icon.ico"

@@ -1,0 +1,77 @@
+== MENU APP ADMIN ==
+1 - Agregar materia
+2 - Agregar listado de materias
+0 - Salir
+
+Elija una opcion: 2
+
+-------------------------------------------
+
+== AGREGAR LISTADO DE MATERIAS ==
+Tiene que tener la estructura
+
+[materia]
+nombre: matematica-1
+descripción: Teoremas y sus implementaciones
+correlatividades: Introduccion a la ingenieria
+
+Direccion del txt: ...
+
+
+[
+{
+id: 1
+nombre: Introduccion a la ingenieria
+descripción: Teoremas y sus implementaciones
+correlatividades: 
+}
+{
+id: 2
+nombre: matematica-1
+descripción: Teoremas y sus implementaciones
+correlatividades: 1
+}
+]
+
+-------------------------------------------
+
+// ALUMNO
+=== MENU PRINCIPAL ===
+1 - Ver listado de materias
+2 - Filtrar materias cursables
+0 - Salir
+Seleccione una opcion: 1
+
+-------------------------------------------
+
+// consume materias.dat de la DB hecha por admin
+// copiar y agregar nueva prop "estado"
+[
+{
+id: 1
+nombre: Introduccion a la ingenieria
+descripción: Teoremas y sus implementaciones
+correlatividades: 
+estado: no cursada // por default
+}
+]
+
+Listado de Materias
+1 - Volver
+2 - matematica-1
+3 - algebra-1
+4 - fisica-1
+Seleccione una opcion: 4
+
+-------------------------------------------
+
+Materia: fisica-1
+Descripcion:
+Correlativas: matematica-1, algebra-1
+Estado: no cursada
+----------------
+1 - Volver
+2 - Editar estado
+Seleccione una opcion:
+
+
