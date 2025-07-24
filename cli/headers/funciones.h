@@ -1,18 +1,15 @@
 #ifndef FUNCIONES_H
 #define FUNCIONES_H
 
+int confirmarCierreDelPrograma();
+void editarEstadoDeMateria();
+void errorOpcionNoValida();
+void esperarEnter();
+void extraccionDeMateriasDesdeArchivoTxt();
+void listadoDeMaterias();
+int materiaInfo();
+void materiasCursables();
 int menuPrincipal();
 void textoMenuPrincipal();
-void esperarEnter();
-int confirmarCierreDelPrograma();
-void errorOpcionNoValida();
-void menuListadoDeMaterias();
-int materiaInfo();
-void editarEstadoDeMateria();
-void materiasCursables();
-int eliminarTodasLasMaterias();
-void menuAgregarMaterias();
-void extraccionDeMateriasDesdeArchivoTxt();
-void agregarMateriaManualmente();
 
 #endif 

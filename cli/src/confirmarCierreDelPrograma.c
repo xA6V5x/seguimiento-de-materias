@@ -1,27 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../headers/funciones.h"
 
 int confirmarCierreDelPrograma(){
-  int confirmarCierre;
+  char confirmarCierre[1];
   char buffer[10];
+  int isPressedS = 0;
+  int isPressedN = 0;
   
   do {
-    system("cls");
-    printf("Seguro que desea salir?\n");
-    printf("1 - confirmar\n");
-    printf("2 - cancelar\n");
-    printf("Seleccione una opcion: ");
-    scanf("%d", &confirmarCierre);
-    fgets(buffer, sizeof(buffer), stdin); // limpiar buffer
+      system("cls");
+      printf("Esta seguro que desea salir? (S/N)\n");
+      printf("\nSeleccione una opcion: ");
+      scanf("%c", &confirmarCierre);
+      fgets(buffer, sizeof(buffer), stdin); // limpiar buffer
 
-    if(confirmarCierre == 1) {
-      printf("Saliendo del programa...\n");
-      return 1;
-    } else if (confirmarCierre != 2) {
-      errorOpcionNoValida();
-    } 
-  } while (confirmarCierre != 1 && confirmarCierre != 2);
+      
+      isPressedS = !strcmp(confirmarCierre, "S") || !strcmp(confirmarCierre, "s");
+      isPressedN = !strcmp(confirmarCierre, "N") || !strcmp(confirmarCierre, "n");
+      
+      if(isPressedS) {
+        printf("Saliendo del programa...\n");
+        return 1;
+      } else if (!isPressedN) {
+        errorOpcionNoValida();
+      } 
+  } while (!isPressedS && !isPressedN);
   
   return 0;
 }

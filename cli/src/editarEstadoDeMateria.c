@@ -8,18 +8,21 @@ void editarEstadoDeMateria() {
 
     do {
         system("cls");
-        printf("Nuevo estado para fisica-1\n");
-        printf("1 - no cursada\n");
-        printf("2 - aprobada\n");
+        printf("== NUEVO ESTADO DE Fisica-1 ==\n");
+        printf("1 - No cursada\n");
+        printf("2 - En curso\n");
+        printf("3 - Siguiente cuatrimestre\n");
+        printf("4 - Final pendiente\n");
+        printf("5 - Aprobada\n");
         printf("----------------\n");
-        printf("3 - cancelar\n");
-        printf("Seleccione una opcion: ");
+        printf("0 - Cancelar\n");
+        printf("\nSeleccione una opcion: ");
         
         scanf("%d", &opcion);
         fgets(buffer, sizeof(buffer), stdin);
 
-        if(opcion != 1 && opcion != 2 && opcion != 3) {
+        if(opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4 && opcion != 5 && opcion != 0) {
             errorOpcionNoValida();
         }
-    } while (opcion != 1 && opcion != 2 && opcion != 3);
+    } while (opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4 && opcion != 5 && opcion != 0);
 }

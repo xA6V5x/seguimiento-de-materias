@@ -14,28 +14,34 @@ int menuPrincipal() {
 
         switch (opcion) {
             case 1:
-                menuListadoDeMaterias();
+                listadoDeMaterias();
                 break;
             case 2:
                 materiasCursables();
                 break;
             case 3:
-                menuAgregarMaterias();
+                materiasCursables();
                 break;
             case 4:
-                eliminarTodasLasMaterias();
+                materiasCursables();
                 break;
             case 5:
+                materiasCursables();
+                break;
+            case 6:
+                materiasCursables();
+                break;
+            case 0:
                 int salir = confirmarCierreDelPrograma();
                 if(!salir) {
-                  opcion = 0; // Resetear opcion para no salir del bucle
+                  opcion = -1; // Resetear opcion para no salir del bucle
                 }
                 break;
             default:
                 errorOpcionNoValida();
                 break;
         }
-  } while (opcion != 5);
+  } while (opcion != 0);
 
   return 0;
 }

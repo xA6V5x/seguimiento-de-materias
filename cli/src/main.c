@@ -2,7 +2,7 @@
 #include <stdlib.h> 
 #include "../headers/funciones.h"
 
-int main(int argc, char *argv[]) {
+int main() {
   menuPrincipal();
   return 0;
 }
