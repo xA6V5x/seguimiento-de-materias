@@ -27,14 +27,18 @@ seguimiento-de-materias/
     └── materias.dat # Datos binarios de materias
 ```
 
--    `materias-length.dat`
-     -    int cantidadDeMaterias
--    ` materias.dat`
-     -    int id
-     -    int nombreLength
-     -    char nombre
-     -    int correlativasLength
-     -    int \*correlativas (contiene el ID de materias)
+-    `materias-length.dat`: contiene un entero (`int`) que representa la cantidad total de materias.
+-    ` materias.dat`: archivo binario que almacena la lista de materias. Cada materia tiene la siguiente estructura:
+
+     ```c
+     typedef struct {
+     int id; // ID único de la materia
+     int nombreLength; // Largo del nombre
+     char nombre[nombreLength]; // Nombre de la materia
+     int correlativasLength; // Cantidad de correlativas
+     int correlativas[correlativasLength]; // IDs de materias correlativas
+     } MateriaArchivo;
+     ```
 
 Estos archivos son generados por el subproyecto `admin/`. Si no existen, la aplicación no podrá mostrar materias.
 
@@ -103,7 +107,7 @@ Este proyecto está pensado para ser compilado y ejecutado con **Visual Studio**
 
 ---
 
-## 🧑‍💻 Menú de la Aplicación
+## 🧑‍💻 Menú de la Aplicación de CLI
 
 Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
 
