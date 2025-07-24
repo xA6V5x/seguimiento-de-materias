@@ -1,6 +1,6 @@
 # 👤 CLI - Seguimiento Personal del Alumno
 
-Este subproyecto forma parte del sistema **Seguimiento de Materias**. Su propósito es brindar una herramienta al alumno para organizar y planificar el cursado de sus materias de forma personalizada.
+Este subproyecto forma parte del sistema **Seguimiento de Materias**. Su propósito es brindar una herramienta al alumno para organizar y planificar la cursada de sus materias de forma personalizada.
 
 ---
 
@@ -8,11 +8,35 @@ Este subproyecto forma parte del sistema **Seguimiento de Materias**. Su propós
 
 `seguimiento-de-materias.exe` es una aplicación de línea de comandos que permite al alumno:
 
--    Visualizar todas las materias disponibles
--    Asignar un **estado personal** a cada materia
--    Aplicar filtros para facilitar la organización del cursado
+-    Visualizar todas las materias disponibles.
+-    Asignar un **estado personal** a cada materia.
+-    Aplicar filtros para facilitar la organización y busqueda de las materias.
 
-Este módulo **no modifica las materias**, solamente las **lee** desde los archivos binarios generados por el módulo `admin/`.
+> ⚠️ Este módulo **no modifica las materias**, solamente las **lee**.
+
+---
+
+## 🔗 Dependencia de Datos
+
+Este módulo **lee las materias** desde:
+
+```
+seguimiento-de-materias/
+└── bin/
+    ├── materias-length.dat # Cantidad de materias
+    └── materias.dat # Datos binarios de materias
+```
+
+-    `materias-length.dat`
+     -    int cantidadDeMaterias
+-    ` materias.dat`
+     -    int id
+     -    int nombreLength
+     -    char nombre
+     -    int correlativasLength
+     -    int \*correlativas (contiene el ID de materias)
+
+Estos archivos son generados por el subproyecto `admin/`. Si no existen, la aplicación no podrá mostrar materias.
 
 ---
 
@@ -24,7 +48,7 @@ bin/ # Datos principales de lectura (materias.dat y materias-length.dat)
 cli/
 ├── bin/ # Cache de estado por materia (${materiaId}.dat es un int)
 ├── docs/ # Documentación técnica
-├── headers/ # Archivos .h (estructuras y funciones)
+├── headers/ # Archivos .h (declaraciones de funciones)
 ├── res/ # Recursos (logo app)
 ├── src/ # Código fuente en C
 └── seguimiento-de-materias.exe # Ejecutable generado (interfaz alumno)
@@ -48,18 +72,20 @@ Cada materia puede tener un estado asignado por el alumno. Estos estados son:
 
 ## 💾 Archivos de estado
 
-Los estados asignados se guardan de forma local en `cli/bin/`, en archivos con el siguiente formato:
+Los estados asignados se guardan de forma local en archivos `${materiaId}.dat` (materiaId es un `int`) ubicados en `cli/bin/`:
 
 ```
-cli/bin/
-├── 1.dat # Estado de la materia con ID 1
-├── 2.dat # Estado de la materia con ID 2
-...
+cli/
+└── bin/
+    ├── ${materiaId}.dat # Estado de la materia con ID entero (int)
+    ├── 1.dat # Estado de la materia con ID 1
+    ├── 2.dat # Estado de la materia con ID 2
+   ...
 ```
 
-Cada archivo contiene un entero (`int`) que representa el estado de la materia correspondiente.
+Cada archivo `${materiaId}.dat` contiene un entero (`int`) entre 1 y 5 que representa el estado de la materia correspondiente.
 
-> ⚠️ Estos archivos son independientes de los datos globales de materias (ubicados en `../bin/`) y solo afectan la vista del alumno.
+> ⚠️ Estos archivos son independientes de los datos globales de materias (ubicados en `seguimiento-de-materias/bin/`) y solo afectan la vista del alumno.
 
 ---
 
@@ -86,7 +112,7 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
      1 - Ver listado de materias
      2 - Filtrar materias Cursables
      3 - Filtrar materias En Curso
-     4 - Filtrar materias Siguiente Cuatri
+     4 - Filtrar materias Siguiente Cuatrimestre
      5 - Filtrar materias con Final Pendiente
      6 - Filtrar materias Aprobadas
      ----------------------------------------
@@ -98,11 +124,17 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
 #### 1. Ver listado de materias
 
 -    Muestra todas las materias registradas.
--    Permite seleccionar una y editar su estado personal.
+-    Permite seleccionar una, ver mas de su informacion y editar su estado personal.
 
-#### 2 a 6. Filtros por estado
+#### 2. Filtrar materias Cursables
 
--    Permiten buscar y ver solo aquellas materias que coincidan con un estado específico.
+-    Permite filtrar solo aquellas materias que sean Cursables. Se consideran "cursables" aquellas materias No Cursadas cuyas correlatividades ya están finalizadas o aprobadas, es decir, todas sus correlativas tienen estado 4 (Final Pendiente) o 5 (Aprobada).
+-    Permite seleccionar una, ver mas de su informacion y editar su estado personal.
+
+#### 3 a 6. Filtros por estado
+
+-    Permiten filtrar solo aquellas materias que coincidan con un estado específico.
+-    Permite seleccionar una, ver mas de su informacion y editar su estado personal.
 
 #### 0. Salir
 
@@ -110,23 +142,6 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
 
 ---
 
-## 🔗 Dependencia de Datos
+Para detalles tecnicos, ver:
 
-Este módulo **lee las materias** desde:
-
-```
-seguimiento-de-materias/bin/
-├── materias-length.dat # Cantidad de materias
-└── materias.dat # Datos binarios de materias
-```
-
-Estos archivos son generados por el subproyecto `admin/`. Si no existen, la aplicación no podrá mostrar materias.
-
----
-
-## 📎 Relación con otros módulos
-
-| Módulo   | Función                                   |
-| -------- | ----------------------------------------- |
-| `admin/` | Crea y edita las materias disponibles     |
-| `bin/`   | Contiene los datos leídos por este módulo |
+-    [`docs/README`](docs/README)
