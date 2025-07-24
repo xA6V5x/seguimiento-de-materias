@@ -4,11 +4,14 @@
 
 void textoMenuPrincipal() {
     system("cls");
-    printf("=== MENU PRINCIPAL ===\n");
+    printf("=== SEGUIMIENTO DE MATERIAS ===\n");
     printf("1 - Ver listado de materias\n");
-    printf("2 - Filtrar materias cursables\n");
-    printf("3 - Agregar materias\n");
-    printf("4 - Eliminar todas las materias\n");
-    printf("5 - Salir\n");
-    printf("Seleccione una opcion: ");
+    printf("2 - Filtrar materias Cursables\n");
+    printf("3 - Filtrar materias En Curso\n");
+    printf("4 - Filtrar materias Siguiente Cuatrimestre\n");
+    printf("5 - Filtrar materias con Final Pendiente\n");
+    printf("6 - Filtrar materias Aprobadas\n");
+    printf("-------------------------------\n");
+    printf("0 - Salir\n");
+    printf("\nSeleccione una opcion: ");
 }

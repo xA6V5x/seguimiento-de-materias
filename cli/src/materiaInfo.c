@@ -8,28 +8,29 @@ int materiaInfo() {
 
     do {
         system("cls");
-        printf("Materia: fisica-1\n");
-        printf("Descripcion:\n");
-        printf("Correlativas: matematica-1, algebra-1\n");
-        printf("Estado: no cursada\n");
+        printf("== MATERIA Fisica-1 ==\n");
+        printf("id: 4\n");
+        printf("nombre: Fisica-1\n");
+        printf("correlativas: Matematica-1, Algebra-1\n");
+        printf("estado: no cursada\n");
         printf("----------------\n");
-        printf("1 - Volver\n");
-        printf("2 - Editar estado\n");
-        printf("Seleccione una opcion: ");
+        printf("1 - Editar estado\n");
+        printf("0 - Volver\n");
+        printf("\nSeleccione una opcion: ");
 
         scanf("%d", &opcion);
         fgets(buffer, sizeof(buffer), stdin);
 
         switch (opcion) {
             case 1:
-                break;
-            case 2:
                 editarEstadoDeMateria();
+                break;
+            case 0:
                 break;
             default:
                 errorOpcionNoValida();
                 break;
         }
-    } while (opcion != 1);
+    } while (opcion != 0);
     
 }

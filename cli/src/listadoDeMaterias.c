@@ -2,23 +2,26 @@
 #include <stdlib.h>
 #include "../headers/funciones.h"
 
-void menuListadoDeMaterias() {
+void listadoDeMaterias() {
     int opcion;
     char buffer[10];
 
     do {
         system("cls");
-        printf("Listado de Materias\n");
-        printf("1 - Volver\n");
-        printf("2 - matematica-1\n");
-        printf("3 - algebra-1\n");
-        printf("4 - fisica-1\n");
-        printf("Seleccione una opcion: ");
+        printf("== LISTADO DE MATERIAS ==\n");
+        printf("0 - Volver\n");
+        printf("-------------------------------\n");
+        printf("1 - Algebra-1\n");
+        printf("2 - Fisica-1\n");
+        printf("3 - Introduccion a la Ingenieria\n");
+        printf("4 - Matematica-1\n");
+        printf("\nSeleccione una opcion: ");
         scanf("%d", &opcion);
         fgets(buffer, sizeof(buffer), stdin); // limpiar buffer
 
         switch (opcion) {
             case 1:
+                materiaInfo();
                 break;
             case 2:
                 materiaInfo();
@@ -29,9 +32,11 @@ void menuListadoDeMaterias() {
             case 4:
                 materiaInfo();
                 break;
+            case 0:
+                break;
             default:
                 errorOpcionNoValida();
                 break;
         }
-    } while (opcion != 1);
+    } while (opcion != 0);
 }
