@@ -20,7 +20,7 @@ Desde esta herramienta podés:
 ## 📁 Estructura de Carpetas
 
 ```
-bin/ # Binario donde se crean/leen/editan/eliminan las materias (materias.dat y materias-length.dat)
+bin/ # Binarios principales de lectoescritura (materias.dat y materias-length.dat)
 
 admin/
 ├── bin/ # Binario contador de id (contador-id.dat es un int)
@@ -35,20 +35,34 @@ admin/
 
 ## 📂 Archivos generados
 
-Este módulo escribe los datos en la carpeta principal `seguimiento-de-materias/bin/` para que puedan ser consumidos por el sistema del alumno (`cli/`):
+Este módulo **lee, crea, actualiza y elimina las materias** desde:
 
--    `materias-length.dat`: contiene un entero (`int`) que representa la cantidad total de materias creadas.
--    `materias.dat`: archivo binario que almacena la lista de materias. Cada materia tiene la siguiente estructura:
-
-```c
-typedef struct {
-    int id;                     // ID único de la materia
-    int nombreLength;          // Largo del nombre
-    char nombre[nombreLength]; // Nombre de la materia
-    int correlativasLength;    // Cantidad de correlativas
-    int correlativas[correlativasLength]; // IDs de materias correlativas
-} Materia;
 ```
+seguimiento-de-materias/
+├── bin/
+|   ├── materias-length.dat # Cantidad de materias
+|   └── materias.dat # Datos binarios de materias
+└── admin/
+    └── bin/
+        └── contador-id.dat # Numero que se incrementa en +1 por cada materia nueva
+```
+
+-    `contador-id.dat`: contiene un entero (`int`) cuyo valor es el ultimo ID usado para crear una materia, al crear una materia nueva se usa el `contador-id + 1` y se actualiza `contador-id.dat` con dicho valor.
+-    `materias-length.dat`: contiene un entero (`int`) que representa la cantidad total de materias.
+-    ` materias.dat`: archivo binario que almacena la lista de materias. Cada materia tiene la siguiente estructura:
+
+     ```c
+     typedef struct {
+       int id;                     // ID único de la materia
+       int nombreLength;          // Largo del nombre
+       char nombre[nombreLength]; // Nombre de la materia
+       int correlativasLength;    // Cantidad de correlativas
+       int correlativas[correlativasLength]; // IDs de materias correlativas
+     } MateriaArchivo;
+     ```
+
+Este módulo trabaja directamente sobre los archivos` materias.dat` y `materias-length.dat`.
+Estos archivos posteriormente son leídos por el subproyecto CLI, que es la herramienta usada por los alumnos.
 
 ---
 
@@ -66,7 +80,7 @@ Este proyecto está pensado para ser compilado y ejecutado con **Visual Studio**
 
 ---
 
-## 🧑‍💻 Menú de la Aplicación
+## 🧑‍💻 Menú de la Aplicación de Admin
 
 Al ejecutar `admin-materias.exe`, se muestra el siguiente menú:
 
@@ -99,27 +113,3 @@ Al ejecutar `admin-materias.exe`, se muestra el siguiente menú:
 #### 0. Salir
 
 -    Cierra la aplicación.
-
----
-
-## 🔗 Dependencia de Datos
-
-Este módulo **lee, crea, actualiza y elimina las materias** desde:
-
-```
-seguimiento-de-materias/bin/
-├── materias-length.dat # Cantidad de materias
-└── materias.dat # Datos binarios de materias
-```
-
-Este módulo trabaja directamente sobre los archivos` materias.dat` y `materias-length.dat` ubicados en `seguimiento-de-materias/bin/`.
-Estos archivos son leídos por el subproyecto CLI, que es la herramienta usada por los alumnos.
-
----
-
-## 📎 Relación con otros módulos
-
-| Módulo | Función                                                          |
-| ------ | ---------------------------------------------------------------- |
-| `cli/` | Consume los datos creados por este módulo para mostrar al alumno |
-| `bin/` | Contiene los archivos de datos generados por este módulo         |
