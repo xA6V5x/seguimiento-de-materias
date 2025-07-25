@@ -36,8 +36,8 @@ seguimiento-de-materias/
      int nombreLength; // Largo del nombre
      char nombre[nombreLength]; // Nombre de la materia
      int correlativasLength; // Cantidad de correlativas
-     int correlativas[correlativasLength]; // IDs de materias correlativas
-     } MateriaArchivo;
+     int *correlativas[correlativasLength]; // IDs de materias correlativas
+     } materia_archivo_t;
      ```
 
 Estos archivos son generados por el subproyecto `admin/`. Si no existen, la aplicación no podrá mostrar materias.

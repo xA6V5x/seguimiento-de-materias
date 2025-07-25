@@ -9,7 +9,7 @@ void textoMenuPrincipal() {
     printf("2 - Filtrar materias Cursables\n");
     printf("3 - Filtrar materias En Curso\n");
     printf("4 - Filtrar materias Siguiente Cuatrimestre\n");
-    printf("5 - Filtrar materias con Final Pendiente\n");
+    printf("5 - Filtrar materias Final Pendiente\n");
     printf("6 - Filtrar materias Aprobadas\n");
     printf("-------------------------------\n");
     printf("0 - Salir\n");

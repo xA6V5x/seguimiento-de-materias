@@ -13,7 +13,7 @@ int materiaInfo() {
         printf("nombre: Fisica-1\n");
         printf("correlativas: Matematica-1, Algebra-1\n");
         printf("estado: no cursada\n");
-        printf("----------------\n");
+        printf("-------------------------------\n");
         printf("1 - Editar estado\n");
         printf("0 - Volver\n");
         printf("\nSeleccione una opcion: ");

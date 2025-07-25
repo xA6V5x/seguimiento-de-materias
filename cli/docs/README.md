@@ -26,7 +26,7 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
           char nombre;
           int correlativasLength;
           int *correlativas; // Contiene materias ID
-     } MateriaArchivo;
+     } materia_archivo_t;
 
      // AL guardar la informacion de materias.dat en el materiasArray, tambien se le agrega la nueva prop "estado" cuyo valor se obtiene desde ${materiaId}.dat
      typedef struct {
@@ -36,7 +36,7 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
           int correlativasLength;
           int *correlativas; // Contiene materias ID
           int estado; // Entre 1 y 5
-     } MateriaConEstado;
+     } materia_con_estado_t;
 ```
 
 ## 📘 Opciones del menú:
@@ -46,8 +46,8 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
 -    ### Muestra todas las materias registradas.
 
      -    Lee `../bin/materias-length.dat` el cual contiene un entero (`int`).
-     -    Reservar memoria para `materiasArray` (materiasLength \* sizeof(MateriaConEstado)).
-     -    Lee `../bin/materias.dat` cuya estructura es `MateriaArchivo`.
+     -    Reservar memoria para `materiasArray` (materiasLength \* sizeof(materia_con_estado_t)).
+     -    Lee `../bin/materias.dat` cuya estructura es `materia_archivo_t`.
      -    Guardar los datos de `materias.dat` en `materiasArray`.
      -    Ordenar las materias de la A-Z.
      -    Iterar en `materiasArray` para mostrar el listado de materias junto con su index + 1, de forma tal que `index + 1` - `NombreDeMateria`.
@@ -103,8 +103,8 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
 -    Permite filtrar solo aquellas materias que sean Cursables. Se consideran "cursables" aquellas materias No Cursadas cuyas correlatividades ya están finalizadas o aprobadas, es decir, todas sus correlativas tienen estado 4 (Final Pendiente) o 5 (Aprobada).
 
      -    Lee `../bin/materias-length.dat` el cual contiene un entero (`int`).
-     -    Reservar memoria para `materiasArray` (materiasLength \* sizeof(MateriaConEstado)).
-     -    Lee `../bin/materias.dat` cuya estructura es `MateriaArchivo`.
+     -    Reservar memoria para `materiasArray` (materiasLength \* sizeof(materia_con_estado_t)).
+     -    Lee `../bin/materias.dat` cuya estructura es `materia_archivo_t`.
      -    Guardar los datos de `materias.dat` en `materiasArray`.
      -    Iterar en `materiasArray` y obtener el estado de la materia ingresando a `bin/${materiaId}.dat`.
      -    Guardar el estado de cada materia en su respectivo objeto `materiasArray[index].estado`.
@@ -112,7 +112,7 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
      -    Iterar en las materias filtradas y re-iterar en su Array de correlativas `materiasArray[index].correlativas` que contiene `[..., materiaId]`.
      -    Verificar el estado de todas sus correlatividades accediendo a `bin/${materiaId}.dat`.
      -    Contar únicamente aquellas materias cuyas correlatividades contienen todas el estado 4 (Final Pendiente) o 5 (Aprobada) y guardar el int contado en `materiasCursablesLength`.
-     -    Reservar memoria para `materiasCursablesArray` (materiasCursablesLength \* sizeof(MateriaConEstado))
+     -    Reservar memoria para `materiasCursablesArray` (materiasCursablesLength \* sizeof(materia_con_estado_t))
      -    Guardar en `materiasCursables` únicamente aquellas materias cuyas correlatividades contienen todas el estado 4 (Final Pendiente) o 5 (Aprobada).
      -    Ordenar las materias de la A-Z.
      -    Iterar en `materiasArray` para mostrar el listado de materias junto con su index + 1, de forma tal que `index + 1` - `NombreDeMateria`.
@@ -167,8 +167,8 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
 -    Permiten filtrar solo aquellas materias que coincidan con un estado específico.
 
      -    Lee `../bin/materias-length.dat` el cual contiene un entero (`int`).
-     -    Reservar memoria para `materiasArray` (materiasLength \* sizeof(MateriaConEstado)).
-     -    Lee `../bin/materias.dat` cuya estructura es `MateriaArchivo`.
+     -    Reservar memoria para `materiasArray` (materiasLength \* sizeof(materia_con_estado_t)).
+     -    Lee `../bin/materias.dat` cuya estructura es `materia_archivo_t`.
      -    Guardar los datos de `materias.dat` en `materiasArray`.
      -    Iterar en `materiasArray` y obtener el estado de la materia ingresando a `bin/${materiaId}.dat`.
      -    Guardar el estado de cada materia en su respectivo objeto `materiasArray[index].estado`.

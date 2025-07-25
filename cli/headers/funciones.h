@@ -2,6 +2,7 @@
 #define FUNCIONES_H
 
 int confirmarCierreDelPrograma();
+void crearArchivosMock();
 void editarEstadoDeMateria();
 void errorOpcionNoValida();
 void esperarEnter();
