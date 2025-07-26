@@ -31,13 +31,7 @@ materias_t leerBinDeMaterias()
 
     // ---------------------------------------------------
 
-    materias.array = malloc(materias.length * sizeof(materia_t));
-    if (materias.array == NULL)
-    {
-        printf("Error al asignar memoria para las materias.\n");
-        esperarEnter();
-        exit(1);
-    }
+    materias.array = miMalloc("las materias consumidas de materias.dat", sizeof(materia_t) * materias.length);
 
     FILE *materiasFile = fopen("../bin/materias.dat", "rb");
     if (materiasFile == NULL)
@@ -55,13 +49,18 @@ materias_t leerBinDeMaterias()
 
         // Extraer el nombre de la materia
         fread(&materias.array[i].nombreLength, sizeof(int), 1, materiasFile); // Largo del nombre
-        materias.array[i].nombre = malloc((materias.array[i].nombreLength + 1) * sizeof(char));
+        materias.array[i].nombre = miMalloc("el nombre de la materia", sizeof(char) * (materias.array[i].nombreLength + 1));
         fread(materias.array[i].nombre, sizeof(char), materias.array[i].nombreLength, materiasFile);
         materias.array[i].nombre[materias.array[i].nombreLength] = '\0'; // Asegurar que el nombre sea una cadena válida
 
         // Extraer array de correlativas de la materia
         fread(&materias.array[i].correlativasLength, sizeof(int), 1, materiasFile); // Cantidad de correlativas
-        materias.array[i].correlativas = malloc(sizeof(int) * materias.array[i].correlativasLength);
+
+        if (materias.array[i].correlativasLength > 0) // Solo asignar memoria si hay correlativas
+        {
+            materias.array[i].correlativas = miMalloc("las correlativas de la materia", sizeof(int) * materias.array[i].correlativasLength);
+        }
+
         fread(materias.array[i].correlativas, sizeof(int), materias.array[i].correlativasLength, materiasFile);
 
         // Inicializar el estado de la materia

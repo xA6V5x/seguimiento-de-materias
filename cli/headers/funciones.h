@@ -10,8 +10,10 @@ void editarEstadoDeMateria();
 void materiaInfo();
 
 // Utilidades
+void *miMalloc(char *contexto, size_t size);
 void esperarEnter();
 void limpiarBuffer();
+void sortMateriasPorNombre();
 
 // Menus
 int menuPrincipal();

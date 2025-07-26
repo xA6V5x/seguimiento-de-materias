@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../headers/funciones.h"
 #include "../headers/types.h"
 
 void menuSeleccionMateria(char *titulo, int materiasLength, materia_t *materiasArray)
 {
     int opcion;
+
+    sortMateriasPorNombre(materiasArray, materiasLength);
 
     do
     {
