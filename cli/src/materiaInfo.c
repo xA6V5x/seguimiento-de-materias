@@ -1,13 +1,14 @@
 #include <stdio.h>
-#include <stdlib.h> 
+#include <stdlib.h>
 #include "../headers/funciones.h"
 #include "../headers/types.h"
 
-void materiaInfo(materia_t materia, int materiasLength, materia_t *materiasArray) {
+void materiaInfo(materia_t materia, int materiasLength, materia_t *materiasArray)
+{
     int opcion;
-    char buffer[10];
 
-    do {
+    do
+    {
         system("cls");
         printf("== MATERIA %s ==\n", materia.nombre);
         printf("id: %d\n", materia.id);
@@ -22,18 +23,18 @@ void materiaInfo(materia_t materia, int materiasLength, materia_t *materiasArray
         printf("\nSeleccione una opcion: ");
 
         scanf("%d", &opcion);
-        fgets(buffer, sizeof(buffer), stdin);
+        limpiarBuffer();
 
-        switch (opcion) {
-            case 1:
-                editarEstadoDeMateria();
-                break;
-            case 0:
-                break;
-            default:
-                errorOpcionNoValida();
-                break;
+        switch (opcion)
+        {
+        case 1:
+            editarEstadoDeMateria();
+            break;
+        case 0:
+            break;
+        default:
+            errorOpcionNoValida();
+            break;
         }
     } while (opcion != 0);
-    
 }
