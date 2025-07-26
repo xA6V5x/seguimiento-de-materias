@@ -36,7 +36,13 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
           int correlativasLength;
           int *correlativas; // Contiene materias ID
           int estado; // Entre 1 y 5
-     } materia_con_estado_t;
+     } materia_t;
+
+     // Al leer los bin la informacion se maneja de esta forma para mayor comodidad
+     typedef struct {
+          int length; // Cantidad de materias
+          materia_t *array; // Array de materias
+     } materias_t;
 ```
 
 ## 📘 Opciones del menú:
@@ -46,7 +52,7 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
 -    ### Muestra todas las materias registradas.
 
      -    Lee `../bin/materias-length.dat` el cual contiene un entero (`int`).
-     -    Reservar memoria para `materiasArray` (materiasLength \* sizeof(materia_con_estado_t)).
+     -    Reservar memoria para `materiasArray` (materiasLength \* sizeof(materia_t)).
      -    Lee `../bin/materias.dat` cuya estructura es `materia_archivo_t`.
      -    Guardar los datos de `materias.dat` en `materiasArray`.
      -    Ordenar las materias de la A-Z.
@@ -103,7 +109,7 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
 -    Permite filtrar solo aquellas materias que sean Cursables. Se consideran "cursables" aquellas materias No Cursadas cuyas correlatividades ya están finalizadas o aprobadas, es decir, todas sus correlativas tienen estado 4 (Final Pendiente) o 5 (Aprobada).
 
      -    Lee `../bin/materias-length.dat` el cual contiene un entero (`int`).
-     -    Reservar memoria para `materiasArray` (materiasLength \* sizeof(materia_con_estado_t)).
+     -    Reservar memoria para `materiasArray` (materiasLength \* sizeof(materia_t)).
      -    Lee `../bin/materias.dat` cuya estructura es `materia_archivo_t`.
      -    Guardar los datos de `materias.dat` en `materiasArray`.
      -    Iterar en `materiasArray` y obtener el estado de la materia ingresando a `bin/${materiaId}.dat`.
@@ -112,7 +118,7 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
      -    Iterar en las materias filtradas y re-iterar en su Array de correlativas `materiasArray[index].correlativas` que contiene `[..., materiaId]`.
      -    Verificar el estado de todas sus correlatividades accediendo a `bin/${materiaId}.dat`.
      -    Contar únicamente aquellas materias cuyas correlatividades contienen todas el estado 4 (Final Pendiente) o 5 (Aprobada) y guardar el int contado en `materiasCursablesLength`.
-     -    Reservar memoria para `materiasCursablesArray` (materiasCursablesLength \* sizeof(materia_con_estado_t))
+     -    Reservar memoria para `materiasCursablesArray` (materiasCursablesLength \* sizeof(materia_t))
      -    Guardar en `materiasCursables` únicamente aquellas materias cuyas correlatividades contienen todas el estado 4 (Final Pendiente) o 5 (Aprobada).
      -    Ordenar las materias de la A-Z.
      -    Iterar en `materiasArray` para mostrar el listado de materias junto con su index + 1, de forma tal que `index + 1` - `NombreDeMateria`.
@@ -167,7 +173,7 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
 -    Permiten filtrar solo aquellas materias que coincidan con un estado específico.
 
      -    Lee `../bin/materias-length.dat` el cual contiene un entero (`int`).
-     -    Reservar memoria para `materiasArray` (materiasLength \* sizeof(materia_con_estado_t)).
+     -    Reservar memoria para `materiasArray` (materiasLength \* sizeof(materia_t)).
      -    Lee `../bin/materias.dat` cuya estructura es `materia_archivo_t`.
      -    Guardar los datos de `materias.dat` en `materiasArray`.
      -    Iterar en `materiasArray` y obtener el estado de la materia ingresando a `bin/${materiaId}.dat`.
