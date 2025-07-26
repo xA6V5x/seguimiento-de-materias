@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../headers/funciones.h"
+#include "../headers/config.h"
 
 void editarEstadoDeMateria()
 {
@@ -10,11 +11,11 @@ void editarEstadoDeMateria()
     {
         system("cls");
         printf("== NUEVO ESTADO DE Fisica-1 ==\n");
-        printf("1 - No cursada\n");
-        printf("2 - En curso\n");
-        printf("3 - Siguiente cuatrimestre\n");
-        printf("4 - Final pendiente\n");
-        printf("5 - Aprobada\n");
+        printf("1 - %s\n", config_get_no_cursada_string());
+        printf("2 - %s\n", config_get_en_curso_string());
+        printf("3 - %s\n", config_get_siguiente_cuatrimestre_string());
+        printf("4 - %s\n", config_get_final_pendiente_string());
+        printf("5 - %s\n", config_get_aprobada_string());
         printf("----------------\n");
         printf("0 - Cancelar\n");
         printf("\nSeleccione una opcion: ");

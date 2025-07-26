@@ -28,7 +28,7 @@ seguimiento-de-materias/
 ```
 
 - `materias-length.dat`: contiene un entero (`int`) que representa la cantidad total de materias.
-- ` materias.dat`: archivo binario que almacena la lista de materias. Cada materia tiene la siguiente estructura:
+- `materias.dat`: archivo binario que almacena la lista de materias. Cada materia tiene la siguiente estructura:
 
   ```c
   typedef struct {

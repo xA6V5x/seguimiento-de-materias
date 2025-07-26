@@ -2,21 +2,33 @@
 #include <stdlib.h>
 #include "../headers/config.h"
 
-static const char MAX_STRING[] = "max";
-static const char MIN_STRING[] = "min";
-static const char *horarios[3] = {"1000", "1400", "1800"};
+static const char NO_CURSADA_STRING[] = "No cursada";
+static const char EN_CURSO_STRING[] = "En curso";
+static const char SIGUIENTE_CUATRIMESTRE_STRING[] = "Siguiente cuatrimestre";
+static const char FINAL_PENDIENTE_STRING[] = "Final pendiente";
+static const char APROBADA_STRING[] = "Aprobada";
 
-const char *config_get_max_string(void)
+const char *config_get_no_cursada_string(void)
 {
-    return MAX_STRING;
+    return NO_CURSADA_STRING;
 }
 
-const char *config_get_min_string(void)
+const char *config_get_en_curso_string(void)
 {
-    return MIN_STRING;
+    return EN_CURSO_STRING;
 }
 
-const char **config_get_horarios_array(void)
+const char *config_get_siguiente_cuatrimestre_string(void)
 {
-    return horarios;
+    return SIGUIENTE_CUATRIMESTRE_STRING;
+}
+
+const char *config_get_final_pendiente_string(void)
+{
+    return FINAL_PENDIENTE_STRING;
+}
+
+const char *config_get_aprobada_string(void)
+{
+    return APROBADA_STRING;
 }
