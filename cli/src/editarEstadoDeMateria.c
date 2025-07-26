@@ -1,12 +1,13 @@
 #include <stdio.h>
-#include <stdlib.h> 
+#include <stdlib.h>
 #include "../headers/funciones.h"
 
-void editarEstadoDeMateria() {
+void editarEstadoDeMateria()
+{
     int opcion;
-    char buffer[10];
 
-    do {
+    do
+    {
         system("cls");
         printf("== NUEVO ESTADO DE Fisica-1 ==\n");
         printf("1 - No cursada\n");
@@ -17,11 +18,12 @@ void editarEstadoDeMateria() {
         printf("----------------\n");
         printf("0 - Cancelar\n");
         printf("\nSeleccione una opcion: ");
-        
-        scanf("%d", &opcion);
-        fgets(buffer, sizeof(buffer), stdin);
 
-        if(opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4 && opcion != 5 && opcion != 0) {
+        scanf("%d", &opcion);
+        limpiarBuffer();
+
+        if (opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4 && opcion != 5 && opcion != 0)
+        {
             errorOpcionNoValida();
         }
     } while (opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4 && opcion != 5 && opcion != 0);

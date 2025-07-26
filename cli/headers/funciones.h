@@ -2,19 +2,34 @@
 #define FUNCIONES_H
 #include "types.h"
 
-int confirmarCierreDelPrograma();
-void crearArchivosDeEstado();
+// Archivos
 void crearArchivosMock();
-void editarEstadoDeMateria();
-void errorOpcionNoValida();
-void esperarEnter();
+void crearArchivosDeEstado();
 materias_t leerBinDeMaterias();
-void listadoDeMaterias();
+void editarEstadoDeMateria();
 void materiaInfo();
-void materiasCursables();
+
+// Utilidades
+void esperarEnter();
+void limpiarBuffer();
+
+// Menus
 int menuPrincipal();
+void menuSeleccionMateria(char *titulo, int materiasLength, materia_t *materiasArray);
+void menuListadoDeMaterias();
+void menuMateriasCursables();
+void menuMateriasEnCurso();
+void menuMateriasSiguienteCuatrimestre();
+void menuMateriasFinalPendiente();
+void menuMateriasAprobadas();
+
+// Texto
+void printMenuPrincipal();
 void printEstadoMateria();
 void printMateriasCorrelativas();
-void textoMenuPrincipal();
+int confirmarCierreDelPrograma();
 
-#endif 
+// Errores
+void errorOpcionNoValida();
+
+#endif

@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include "../headers/funciones.h"
 
-void textoMenuPrincipal() {
+void printMenuPrincipal()
+{
     system("cls");
     printf("=== SEGUIMIENTO DE MATERIAS ===\n");
     printf("1 - Ver listado de materias\n");
