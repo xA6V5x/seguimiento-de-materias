@@ -8,9 +8,9 @@ Este subproyecto forma parte del sistema **Seguimiento de Materias**. Su propós
 
 `seguimiento-de-materias.exe` es una aplicación de línea de comandos que permite al alumno:
 
--    Visualizar todas las materias disponibles.
--    Asignar un **estado personal** a cada materia.
--    Aplicar filtros para facilitar la organización y busqueda de las materias.
+- Visualizar todas las materias disponibles.
+- Asignar un **estado personal** a cada materia.
+- Aplicar filtros para facilitar la organización y busqueda de las materias.
 
 > ⚠️ Este módulo **no modifica las materias**, solamente las **lee**.
 
@@ -27,18 +27,18 @@ seguimiento-de-materias/
     └── materias.dat # Datos binarios de materias
 ```
 
--    `materias-length.dat`: contiene un entero (`int`) que representa la cantidad total de materias.
--    ` materias.dat`: archivo binario que almacena la lista de materias. Cada materia tiene la siguiente estructura:
+- `materias-length.dat`: contiene un entero (`int`) que representa la cantidad total de materias.
+- ` materias.dat`: archivo binario que almacena la lista de materias. Cada materia tiene la siguiente estructura:
 
-     ```c
-     typedef struct {
-     int id; // ID único de la materia
-     int nombreLength; // Largo del nombre
-     char nombre[nombreLength]; // Nombre de la materia
-     int correlativasLength; // Cantidad de correlativas
-     int *correlativas[correlativasLength]; // IDs de materias correlativas
-     } materia_archivo_t;
-     ```
+  ```c
+  typedef struct {
+  int id; // ID único de la materia
+  int nombreLength; // Largo del nombre
+  char nombre[nombreLength]; // Nombre de la materia
+  int correlativasLength; // Cantidad de correlativas
+  int *correlativas[correlativasLength]; // IDs de materias correlativas
+  } materia_archivo_t;
+  ```
 
 Estos archivos son generados por el subproyecto `admin/`. Si no existen, la aplicación no podrá mostrar materias.
 
@@ -127,25 +127,25 @@ Al ejecutar `seguimiento-de-materias.exe`, se muestra el siguiente menú:
 
 #### 1. Ver listado de materias
 
--    Muestra todas las materias registradas.
--    Permite seleccionar una, ver mas de su informacion y editar su estado personal.
+- Muestra todas las materias registradas.
+- Permite seleccionar una, ver mas de su informacion y editar su estado personal.
 
 #### 2. Filtrar materias Cursables
 
--    Permite filtrar solo aquellas materias que sean Cursables. Se consideran "cursables" aquellas materias No Cursadas cuyas correlatividades ya están finalizadas o aprobadas, es decir, todas sus correlativas tienen estado 4 (Final Pendiente) o 5 (Aprobada).
--    Permite seleccionar una, ver mas de su informacion y editar su estado personal.
+- Permite filtrar solo aquellas materias que sean Cursables. Se consideran "cursables" aquellas materias No Cursadas cuyas correlatividades ya están finalizadas o aprobadas, es decir, todas sus correlativas tienen estado 4 (Final Pendiente) o 5 (Aprobada).
+- Permite seleccionar una, ver mas de su informacion y editar su estado personal.
 
 #### 3 a 6. Filtros por estado
 
--    Permiten filtrar solo aquellas materias que coincidan con un estado específico.
--    Permite seleccionar una, ver mas de su informacion y editar su estado personal.
+- Permiten filtrar solo aquellas materias que coincidan con un estado específico.
+- Permite seleccionar una, ver mas de su informacion y editar su estado personal.
 
 #### 0. Salir
 
--    Cierra la aplicación.
+- Cierra la aplicación.
 
 ---
 
 Para detalles tecnicos, ver:
 
--    [`docs/README`](docs/README)
+- [`docs/README`](docs/README)
