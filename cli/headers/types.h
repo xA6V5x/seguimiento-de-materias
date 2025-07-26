@@ -16,6 +16,11 @@ typedef struct {
      int correlativasLength; // Cantidad de correlativas
      int *correlativas; // IDs de materias correlativas
      int estado; // Estado de la materia (1: no cursada, 2: en curso, 3: siguiente cuatrimestre, 4: final pendiente, 5: aprobada)
-} materia_con_estado_t;
+} materia_t;
+
+typedef struct {
+     int length; // Cantidad de materias
+     materia_t *array; // Array de materias
+} materias_t;
 
 #endif // TYPES_H_INCLUDED

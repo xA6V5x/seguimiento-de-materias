@@ -1,18 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h> 
 #include "../headers/funciones.h"
+#include "../headers/types.h"
 
-int materiaInfo() {
+void materiaInfo(materia_t materia, int materiasLength, materia_t *materiasArray) {
     int opcion;
     char buffer[10];
 
     do {
         system("cls");
-        printf("== MATERIA Fisica-1 ==\n");
-        printf("id: 4\n");
-        printf("nombre: Fisica-1\n");
-        printf("correlativas: Matematica-1, Algebra-1\n");
-        printf("estado: no cursada\n");
+        printf("== MATERIA %s ==\n", materia.nombre);
+        printf("id: %d\n", materia.id);
+        printf("nombre: %s\n", materia.nombre);
+        printf("correlativas: ");
+        printMateriasCorrelativas(materia, materiasLength, materiasArray);
+        printf("estado: ");
+        printEstadoMateria(materia.estado);
         printf("-------------------------------\n");
         printf("1 - Editar estado\n");
         printf("0 - Volver\n");
