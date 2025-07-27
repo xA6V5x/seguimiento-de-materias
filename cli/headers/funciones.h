@@ -8,7 +8,6 @@ void crearArchivosDeEstado();
 materias_t leerBinDeMaterias();
 void leerBinEstadoDeMateria(materia_t *materia);
 void refrescarEstadosDeMaterias(int materiasLength, materia_t *materiasArray);
-void editarEstadoDeMateria();
 
 // Utilidades
 void *miMalloc(char *contexto, size_t size);
@@ -26,7 +25,8 @@ void menuMateriasEnCurso();
 void menuMateriasSiguienteCuatrimestre();
 void menuMateriasFinalPendiente();
 void menuMateriasAprobadas();
-void materiaInfo(materia_t materia, int materiasLength, materia_t *materiasArray);
+void menuMateriaInfo(materia_t materia, int materiasLength, materia_t *materiasArray);
+void menuEditarEstadoDeMateria(int materiaId);
 
 // Texto
 void printMenuPrincipal();

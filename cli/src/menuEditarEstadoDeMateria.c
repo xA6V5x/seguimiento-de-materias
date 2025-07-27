@@ -3,7 +3,7 @@
 #include "../headers/funciones.h"
 #include "../headers/config.h"
 
-void editarEstadoDeMateria()
+void menuEditarEstadoDeMateria(int materiaId)
 {
     int opcion;
 
@@ -27,5 +27,22 @@ void editarEstadoDeMateria()
         {
             errorOpcionNoValida();
         }
+
+        char filename[50];
+
+        // Construir el path para cada archivo binario individual de materia
+        sprintf(filename, "./bin/%d.dat", materiaId);
+
+        FILE *fw = fopen(filename, "wb");
+        if (fw == NULL)
+        {
+            fclose(fw);
+            perror("Error al actualizar el estado de la materia.");
+            esperarEnter();
+            exit(1);
+        }
+        fwrite(&opcion, sizeof(int), 1, fw);
+        fclose(fw);
+
     } while (opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4 && opcion != 5 && opcion != 0);
 }

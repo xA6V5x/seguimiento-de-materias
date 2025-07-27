@@ -34,7 +34,10 @@ void crearArchivosDeEstado()
                 esperarEnter();
                 exit(1);
             }
-            fwrite(&materiasArray[i], sizeof(materia_t), 1, fw);
+
+            int valorDefault = 1; // No cursada
+
+            fwrite(&valorDefault, sizeof(int), 1, fw);
             fclose(fw);
         }
         else
