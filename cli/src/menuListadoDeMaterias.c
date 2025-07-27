@@ -7,11 +7,13 @@ void menuListadoDeMaterias()
 {
     materias_t materias = leerBinDeMaterias();
 
+    int estadoId = 0;
+
+    char titulo[20] = "LISTADO DE MATERIAS";
+
     int materiasLength = materias.length;
 
     materia_t *materiasArray = materias.array;
 
-    char titulo[20] = "LISTADO DE MATERIAS";
-
-    menuSeleccionMateria(titulo, materiasLength, materiasArray);
+    menuSeleccionMateria(estadoId, titulo, &materiasLength, &materiasArray, NULL);
 }

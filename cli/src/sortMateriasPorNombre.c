@@ -11,7 +11,7 @@ int compareMateriasPorNombre(const void *a, const void *b)
 }
 
 // Ordenar las materias por nombre
-void sortMateriasPorNombre(materia_t *materiasArray, int materiasLength)
+void sortMateriasPorNombre(int materiasLength, materia_t *materiasArray)
 {
     qsort(materiasArray, materiasLength, sizeof(materia_t), compareMateriasPorNombre);
 }

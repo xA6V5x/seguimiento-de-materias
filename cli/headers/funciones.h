@@ -6,29 +6,32 @@
 void crearArchivosMock();
 void crearArchivosDeEstado();
 materias_t leerBinDeMaterias();
+void leerBinEstadoDeMateria(materia_t *materia);
+void refrescarEstadosDeMaterias(int materiasLength, materia_t *materiasArray);
 void editarEstadoDeMateria();
-void materiaInfo();
 
 // Utilidades
 void *miMalloc(char *contexto, size_t size);
 void esperarEnter();
 void limpiarBuffer();
-void sortMateriasPorNombre();
+void sortMateriasPorNombre(int materiasLength, materia_t *materiasArray);
+void filtrarMateriasPorEstado(int estadoId, int *materiasLength, materia_t **materiasArray);
 
 // Menus
 int menuPrincipal();
-void menuSeleccionMateria(char *titulo, int materiasLength, materia_t *materiasArray);
+void menuSeleccionMateria(int estadoId, char *titulo, int *materiasLength, materia_t **materiasArray, ptr_funcion_filtro_t funcionFiltro);
 void menuListadoDeMaterias();
 void menuMateriasCursables();
 void menuMateriasEnCurso();
 void menuMateriasSiguienteCuatrimestre();
 void menuMateriasFinalPendiente();
 void menuMateriasAprobadas();
+void materiaInfo(materia_t materia, int materiasLength, materia_t *materiasArray);
 
 // Texto
 void printMenuPrincipal();
-void printEstadoMateria();
-void printMateriasCorrelativas();
+void printEstadoMateria(int estado);
+void printMateriasCorrelativas(materia_t materia, int materiasLength, materia_t *materiasArray);
 int confirmarCierreDelPrograma();
 
 // Errores

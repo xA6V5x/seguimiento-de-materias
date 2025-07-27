@@ -9,6 +9,7 @@ void materiaInfo(materia_t materia, int materiasLength, materia_t *materiasArray
 
     do
     {
+        leerBinEstadoDeMateria(&materia); // Lee el estado y lo guarda en materia.estado
         system("cls");
         printf("== MATERIA %s ==\n", materia.nombre);
         printf("id: %d\n", materia.id);
