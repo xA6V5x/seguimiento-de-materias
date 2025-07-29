@@ -29,7 +29,7 @@ void menuMateriaInfo(materia_t materia, int materiasLength, materia_t *materiasA
         switch (opcion)
         {
         case 1:
-            menuEditarEstadoDeMateria(materia.id);
+            menuEditarEstadoDeMateria(&materia);
             break;
         case 0:
             break;

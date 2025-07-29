@@ -3,7 +3,7 @@
 #include "../headers/funciones.h"
 #include "../headers/config.h"
 
-void menuEditarEstadoDeMateria(int materiaId)
+void menuEditarEstadoDeMateria(materia_t *materia)
 {
     int opcion;
 
@@ -30,12 +30,22 @@ void menuEditarEstadoDeMateria(int materiaId)
 
         // Si la opcion seleccionada es 5 (Aprobada), checkear que los estados de las correlativas sean Aprobadas (5)
         // De no tener alguna de las correlativas requeridas con estado de aprobación devolver el error
-        // "Error: Esta materia requiere que la correlativa ${NombreDeMateria} esté aprobada antes de marcarla como aprobada."
+        // "Error: Esta materia requiere que la correlativa ${NombreDeMateria} haya sido aprobada."
+        if (opcion == 5)
+        {
+            int existeCorrelativaNoAprobada = comprobarCorrelativasAprobadas(materia);
+
+            if (existeCorrelativaNoAprobada)
+            {
+                opcion = -1; // Resetear bucle
+                return;
+            }
+        }
 
         char filename[50];
 
         // Construir el path para cada archivo binario individual de materia
-        sprintf(filename, "./bin/%d.dat", materiaId);
+        sprintf(filename, "./bin/%d.dat", materia->id);
 
         FILE *fw = fopen(filename, "wb");
         if (fw == NULL)
