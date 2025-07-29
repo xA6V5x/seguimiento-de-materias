@@ -28,6 +28,10 @@ void menuEditarEstadoDeMateria(int materiaId)
             errorOpcionNoValida();
         }
 
+        // Si la opcion seleccionada es 5 (Aprobada), checkear que los estados de las correlativas sean Aprobadas (5)
+        // De no tener alguna de las correlativas requeridas con estado de aprobación devolver el error
+        // "Error: Esta materia requiere que la correlativa ${NombreDeMateria} esté aprobada antes de marcarla como aprobada."
+
         char filename[50];
 
         // Construir el path para cada archivo binario individual de materia
