@@ -26,4 +26,6 @@ typedef struct
      materia_t *array; // Array de materias
 } materias_t;
 
+typedef void (*ptr_funcion_filtro_t)(int estadoId, int *materiasLength, materia_t **materiasArray);
+
 #endif // TYPES_H_INCLUDED

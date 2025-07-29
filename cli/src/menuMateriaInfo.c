@@ -3,12 +3,13 @@
 #include "../headers/funciones.h"
 #include "../headers/types.h"
 
-void materiaInfo(materia_t materia, int materiasLength, materia_t *materiasArray)
+void menuMateriaInfo(materia_t materia, int materiasLength, materia_t *materiasArray)
 {
     int opcion;
 
     do
     {
+        leerBinEstadoDeMateria(&materia); // Lee el estado y lo guarda en materia.estado
         system("cls");
         printf("== MATERIA %s ==\n", materia.nombre);
         printf("id: %d\n", materia.id);
@@ -28,7 +29,7 @@ void materiaInfo(materia_t materia, int materiasLength, materia_t *materiasArray
         switch (opcion)
         {
         case 1:
-            editarEstadoDeMateria();
+            menuEditarEstadoDeMateria(materia.id);
             break;
         case 0:
             break;
