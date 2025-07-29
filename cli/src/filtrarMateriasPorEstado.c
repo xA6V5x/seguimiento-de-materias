@@ -30,8 +30,12 @@ void filtrarMateriasPorEstado(int estadoId, int *materiasLength, materia_t **mat
     if (nuevoMateriasLength == *materiasLength)
         return; // Al filtrar quedaron las mismas materias que ya estaban
 
-    // Reservar memoria para esa cantidad de materias
+    // ----------------------------------------------------------------------
+
+    // Reservar memoria para nuevoMateriasArray [sizeof(materia_t)*nuevoMateriasLength]
     materia_t *nuevoMateriasArray = miMalloc("las materias filtradas.", sizeof(materia_t) * nuevoMateriasLength);
+
+    // ----------------------------------------------------------------------
 
     // Iterar sobre materiasArray e ir guardando las materias coincidentes en mi nuevo puntero
     int indexCount = 0; // posicion actual del nuevo array

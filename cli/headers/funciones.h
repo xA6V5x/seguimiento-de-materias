@@ -14,6 +14,7 @@ void *miMalloc(char *contexto, size_t size);
 void esperarEnter();
 void limpiarBuffer();
 void sortMateriasPorNombre(int materiasLength, materia_t *materiasArray);
+void filtrarMateriasCursables(int estadoId, int *materiasLength, materia_t **materiasArray);
 void filtrarMateriasPorEstado(int estadoId, int *materiasLength, materia_t **materiasArray);
 
 // Menus
