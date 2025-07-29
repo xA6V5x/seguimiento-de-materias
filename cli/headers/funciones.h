@@ -16,6 +16,7 @@ void limpiarBuffer();
 void sortMateriasPorNombre(int materiasLength, materia_t *materiasArray);
 void filtrarMateriasCursables(int estadoId, int *materiasLength, materia_t **materiasArray);
 void filtrarMateriasPorEstado(int estadoId, int *materiasLength, materia_t **materiasArray);
+int comprobarCorrelativasAprobadas(materia_t *materia);
 
 // Menus
 int menuPrincipal();
@@ -27,7 +28,7 @@ void menuMateriasSiguienteCuatrimestre();
 void menuMateriasFinalPendiente();
 void menuMateriasAprobadas();
 void menuMateriaInfo(materia_t materia, int materiasLength, materia_t *materiasArray);
-void menuEditarEstadoDeMateria(int materiaId);
+void menuEditarEstadoDeMateria(materia_t *materia);
 
 // Texto
 void printMenuPrincipal();

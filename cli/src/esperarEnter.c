@@ -4,7 +4,7 @@
 
 void esperarEnter()
 {
-    printf("Presione Enter para continuar...");
+    printf("\nPresione Enter para continuar...");
     // Espera a que el usuario presione Enter
     limpiarBuffer();
 }
