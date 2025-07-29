@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include "../headers/funciones.h"
 
-void esperarEnter() {
-    char buffer[10];
-    printf("Presionar Enter para continuar...");
-    fgets(buffer, sizeof(buffer), stdin);
+void esperarEnter()
+{
+    printf("\nPresione Enter para continuar...");
+    // Espera a que el usuario presione Enter
+    limpiarBuffer();
 }
