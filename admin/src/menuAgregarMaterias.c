@@ -1,33 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "../headers/config.h"
 #include "../headers/funciones.h"
+#include "../headers/types.h"
 
-void menuAgregarMaterias() {
-    int opcion;
-    char buffer[10];
+// Se consideran "cursables" aquellas materias No Cursadas cuyas correlatividades
+// ya están finalizadas o aprobadas, es decir, todas sus correlativas tienen estado 4 (Final Pendiente) o 5 (Aprobada).
+void menuAgregarMaterias()
+{
+    materias_t materias = leerBinDeMaterias();
 
-    do {
-        system("cls");
-        printf("Como quieres agregar las nuevas materias?\n");
-        printf("1 - Volver\n");
-        printf("2 - Direccion de documento txt\n");
-        printf("3 - Manualmente\n");
-        printf("Seleccione una opcion: ");
-        scanf("%d", &opcion);
-        fgets(buffer, sizeof(buffer), stdin); // limpiar buffer
+    int estadoId = 0;
 
-        switch (opcion) {
-            case 1:
-                break;
-            case 2:
-                extraccionDeMateriasDesdeArchivoTxt();
-                break;
-            case 3:
-                agregarMateriaManualmente();    
-                break;
-            default:
-                errorOpcionNoValida();
-                break;
-        }
-    } while (opcion != 1);
+    int materiasLength = materias.length;
+
+    materia_archivo_t *materiasArray = materias.array;
+
+    materia_archivo_t materiaNueva = {.id = -1, .nombreLength = 2, .nombre = "--", .correlativasLength = 0, .correlativas = NULL};
+
+    char titulo[19] = "AGREGAR MATERIAS";
+
+    menuMateriaInfo(materiaNueva, materiasLength, materiasArray);
 }

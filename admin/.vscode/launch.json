@@ -2,10 +2,10 @@
      "version": "0.2.0",
      "configurations": [
           {
-               "name": "Debug admin-materias.exe",
+               "name": "Debug seguimiento-de-materias.exe",
                "type": "cppdbg",
                "request": "launch",
-               "program": "${workspaceFolder}/admin-materias.exe",
+               "program": "${workspaceFolder}/seguimiento-de-materias.exe",
                "args": [],
                "stopAtEntry": false,
                "cwd": "${workspaceFolder}",

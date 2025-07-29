@@ -3,6 +3,8 @@
           "funciones.h": "c",
           "stdlib.h": "c",
           "stdio.h": "c",
-          "config.h": "c"
+          "config.h": "c",
+          "string.h": "c",
+          "types.h": "c"
      }
 }
