@@ -1,0 +1,7 @@
+6,
+0, 23, Ver listado de materias
+1, 26, Filtrar materias Cursables
+2, 25, Filtrar materias En Curso
+3, 39, Filtrar materias Siguiente Cuatrimestre
+4, 32, Filtrar materias Final Pendiente
+5, 26, Filtrar materias Aprobadas

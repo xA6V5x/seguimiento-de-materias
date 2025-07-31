@@ -4,14 +4,13 @@
 #include "../headers/config.h"
 #include "../headers/types.h"
 
-static const int opcionesArrayLength = 6;
-static const opcion_accion_t opcionesArray[6] = {
-    {"Ver listado de materias", menuListadoDeMaterias},
-    {"Filtrar materias Cursables", menuMateriasCursables},
-    {"Filtrar materias En Curso", menuMateriasEnCurso},
-    {"Filtrar materias Siguiente Cuatrimestre", menuMateriasSiguienteCuatrimestre},
-    {"Filtrar materias Final Pendiente", menuMateriasFinalPendiente},
-    {"Filtrar materias Aprobadas", menuMateriasAprobadas},
+static const ptr_funcion_void_t funcionesArray[6] = {
+    menuListadoDeMaterias,
+    menuMateriasCursables,
+    menuMateriasEnCurso,
+    menuMateriasSiguienteCuatrimestre,
+    menuMateriasFinalPendiente,
+    menuMateriasAprobadas,
 };
 
 static const int NO_CURSADA_ID = 1;
@@ -27,14 +26,19 @@ static const char FINAL_PENDIENTE_STRING[] = "Final pendiente";
 static const char APROBADA_STRING[] = "Aprobada";
 
 // Menu Principal
-const int config_get_opcion_accion_array_length(void)
+const opciones_acciones_t *config_get_opciones_acciones_object(void)
 {
-    return opcionesArrayLength;
-}
+    static opciones_acciones_t obj;
+    static int inicializado = 0;
 
-const opcion_accion_t *config_get_opcion_accion_array(void)
-{
-    return opcionesArray;
+    // Las opciones se leen una sola vez porque no deben cambiar en tiempo de ejecución
+    if (!inicializado)
+    {
+        obj = leerTxtConfig(funcionesArray);
+        inicializado = 1;
+    }
+
+    return &obj;
 }
 
 // IDs

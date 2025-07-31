@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "../headers/funciones.h"
 
-void printMenuPrincipal(int opcionesArrayLength, const opcion_accion_t *opcionesArray)
+void printMenuPrincipal(const int opcionesArrayLength, const opcion_accion_t *opcionesArray)
 {
     system("cls");
     printf("=== SEGUIMIENTO DE MATERIAS ===\n");

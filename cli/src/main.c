@@ -16,8 +16,8 @@ int main()
   int opcion;
   int confirmarSalida = 0;
 
-  int opcionesArrayLength = config_get_opcion_accion_array_length();
-  const opcion_accion_t *opcionesArray = config_get_opcion_accion_array();
+  const int opcionesArrayLength = config_get_opciones_acciones_object()->length;
+  const opcion_accion_t *opcionesArray = config_get_opciones_acciones_object()->array;
 
   do
   {

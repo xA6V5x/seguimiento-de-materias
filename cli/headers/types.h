@@ -33,6 +33,12 @@ typedef struct
      ptr_funcion_void_t funcion;
 } opcion_accion_t;
 
+typedef struct
+{
+     int length;             // Cantidad de opciones
+     opcion_accion_t *array; // Array de opciones con acciones
+} opciones_acciones_t;
+
 typedef void (*ptr_funcion_filtro_t)(int estadoId, int *materiasLength, materia_t **materiasArray);
 
 #endif // TYPES_H_INCLUDED

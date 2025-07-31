@@ -3,7 +3,7 @@
 #include "../headers/funciones.h"
 #include "../headers/types.h"
 
-void procesarOpcion(int *opcion, int opcionesArrayLength, const opcion_accion_t *opcionesArray)
+void procesarOpcion(int *opcion, const int opcionesArrayLength, const opcion_accion_t *opcionesArray)
 {
     if (*opcion == 0)
     {

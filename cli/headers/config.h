@@ -3,8 +3,7 @@
 #include "types.h"
 
 // Menu Principal
-const int config_get_opcion_accion_array_length(void);
-const opcion_accion_t *config_get_opcion_accion_array(void);
+const opciones_acciones_t *config_get_opciones_acciones_object(void);
 
 // Estado de la materia id
 const int config_get_no_cursada_id(void);
