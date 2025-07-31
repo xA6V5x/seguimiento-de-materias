@@ -1,6 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../headers/funciones.h"
 #include "../headers/config.h"
+#include "../headers/types.h"
+
+static const ptr_funcion_void_t funcionesArray[6] = {
+    menuListadoDeMaterias,
+    menuMateriasCursables,
+    menuMateriasEnCurso,
+    menuMateriasSiguienteCuatrimestre,
+    menuMateriasFinalPendiente,
+    menuMateriasAprobadas,
+};
 
 static const int NO_CURSADA_ID = 1;
 static const int EN_CURSO_ID = 2;
@@ -13,6 +24,22 @@ static const char EN_CURSO_STRING[] = "En curso";
 static const char SIGUIENTE_CUATRIMESTRE_STRING[] = "Siguiente cuatrimestre";
 static const char FINAL_PENDIENTE_STRING[] = "Final pendiente";
 static const char APROBADA_STRING[] = "Aprobada";
+
+// Menu Principal
+const opciones_acciones_t *config_get_opciones_acciones_object(void)
+{
+    static opciones_acciones_t obj;
+    static int inicializado = 0;
+
+    // Las opciones se leen una sola vez porque no deben cambiar en tiempo de ejecución
+    if (!inicializado)
+    {
+        obj = leerTxtConfig(funcionesArray);
+        inicializado = 1;
+    }
+
+    return &obj;
+}
 
 // IDs
 const int config_get_no_cursada_id(void)
