@@ -1,6 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../headers/funciones.h"
 #include "../headers/config.h"
+#include "../headers/types.h"
+
+static const int opcionesArrayLength = 6;
+static const opcion_accion_t opcionesArray[6] = {
+    {"Ver listado de materias", menuListadoDeMaterias},
+    {"Filtrar materias Cursables", menuMateriasCursables},
+    {"Filtrar materias En Curso", menuMateriasEnCurso},
+    {"Filtrar materias Siguiente Cuatrimestre", menuMateriasSiguienteCuatrimestre},
+    {"Filtrar materias Final Pendiente", menuMateriasFinalPendiente},
+    {"Filtrar materias Aprobadas", menuMateriasAprobadas},
+};
 
 static const int NO_CURSADA_ID = 1;
 static const int EN_CURSO_ID = 2;
@@ -13,6 +25,17 @@ static const char EN_CURSO_STRING[] = "En curso";
 static const char SIGUIENTE_CUATRIMESTRE_STRING[] = "Siguiente cuatrimestre";
 static const char FINAL_PENDIENTE_STRING[] = "Final pendiente";
 static const char APROBADA_STRING[] = "Aprobada";
+
+// Menu Principal
+const int config_get_opcion_accion_array_length(void)
+{
+    return opcionesArrayLength;
+}
+
+const opcion_accion_t *config_get_opcion_accion_array(void)
+{
+    return opcionesArray;
+}
 
 // IDs
 const int config_get_no_cursada_id(void)

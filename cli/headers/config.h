@@ -1,5 +1,10 @@
 #ifndef CONFIG_H_INCLUDED
 #define CONFIG_H_INCLUDED
+#include "types.h"
+
+// Menu Principal
+const int config_get_opcion_accion_array_length(void);
+const opcion_accion_t *config_get_opcion_accion_array(void);
 
 // Estado de la materia id
 const int config_get_no_cursada_id(void);
