@@ -7,7 +7,7 @@ void printMenuPrincipal()
     system("cls");
     printf("== ADMINISTRAR MATERIAS ==\n");
     printf("1 - Editar Materias\n");
-    printf("2 - Agregar Materias\n");
+    printf("2 - Agregar Materia\n");
     printf("3 - Eliminar Materias\n");
     printf("-------------------------------\n");
     printf("0 - Salir\n");

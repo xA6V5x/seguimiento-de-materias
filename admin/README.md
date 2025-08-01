@@ -10,10 +10,10 @@ Este subproyecto forma parte del sistema **Seguimiento de Materias**. Su propós
 
 Desde esta herramienta podés:
 
--    Agregar materias nuevas
--    Editar nombre o correlatividades de materias existentes
--    Eliminar materias
--    Guardar todo en formato binario para que luego lo use la interfaz del alumno
+- Agregar materias nuevas
+- Editar nombre o correlatividades de materias existentes
+- Eliminar materias
+- Guardar todo en formato binario para que luego lo use la interfaz del alumno
 
 ---
 
@@ -24,11 +24,34 @@ bin/ # Binarios principales de lectoescritura (materias.dat y materias-length.da
 
 admin/
 ├── bin/ # Binario contador de id (contador-id.dat es un int)
+├── config/ # Opciones del menu principal junto con el id de la funcion a utilizar
 ├── docs/ # Documentación técnica
 ├── headers/ # Archivos .h (estructuras y funciones)
 ├── res/ # Recursos (logo app)
 ├── src/ # Código fuente en C
 └── admin-materias.exe # Ejecutable generado (administrador de materias)
+```
+
+---
+
+## 📚 Archivo Config
+
+La carpeta config contiene un archivo llamado menu-principal.txt, el cual se utiliza para poder mostar las opciones y conexiones con funcionalidades en el menu principal.
+Si este archivo no existe la aplicacion no sera funcional.
+
+```
+cli/
+└── config/
+    └── menu-principal.txt
+```
+
+La estructura de menu-principal.txt es:
+
+```
+cantidadDeOpciones,
+funcionId, textoLength, texto
+funcionId, textoLength, texto
+...
 ```
 
 ---
@@ -47,19 +70,19 @@ seguimiento-de-materias/
         └── contador-id.dat # Numero que se incrementa en +1 por cada materia nueva
 ```
 
--    `contador-id.dat`: contiene un entero (`int`) cuyo valor es el ultimo ID usado para crear una materia, al crear una materia nueva se usa el `contador-id + 1` y se actualiza `contador-id.dat` con dicho valor.
--    `materias-length.dat`: contiene un entero (`int`) que representa la cantidad total de materias.
--    ` materias.dat`: archivo binario que almacena la lista de materias. Cada materia tiene la siguiente estructura:
+- `contador-id.dat`: contiene un entero (`int`) cuyo valor es el ultimo ID usado para crear una materia, al crear una materia nueva se usa el `contador-id + 1` y se actualiza `contador-id.dat` con dicho valor.
+- `materias-length.dat`: contiene un entero (`int`) que representa la cantidad total de materias.
+- ` materias.dat`: archivo binario que almacena la lista de materias. Cada materia tiene la siguiente estructura:
 
-     ```c
-     typedef struct {
-       int id;                     // ID único de la materia
-       int nombreLength;          // Largo del nombre
-       char nombre[nombreLength]; // Nombre de la materia
-       int correlativasLength;    // Cantidad de correlativas
-       int correlativas[correlativasLength]; // IDs de materias correlativas
-     } MateriaArchivo;
-     ```
+  ```c
+  typedef struct {
+    int id;                     // ID único de la materia
+    int nombreLength;          // Largo del nombre
+    char nombre[nombreLength]; // Nombre de la materia
+    int correlativasLength;    // Cantidad de correlativas
+    int correlativas[correlativasLength]; // IDs de materias correlativas
+  } MateriaArchivo;
+  ```
 
 Este módulo trabaja directamente sobre los archivos` materias.dat` y `materias-length.dat`.
 Estos archivos posteriormente son leídos por el subproyecto CLI, que es la herramienta usada por los alumnos.
@@ -97,19 +120,19 @@ Al ejecutar `admin-materias.exe`, se muestra el siguiente menú:
 
 #### 1. Editar Materias
 
--    Permite modificar el nombre de una materia existente.
--    Permite agregar o quitar correlatividades.
+- Permite modificar el nombre de una materia existente.
+- Permite agregar o quitar correlatividades.
 
 #### 2. Agregar Materias
 
--    Ingresás un nombre y una lista de correlativas (opcional).
--    Se asigna automáticamente un ID a la nueva materia.
+- Ingresás un nombre y una lista de correlativas (opcional).
+- Se asigna automáticamente un ID a la nueva materia.
 
 #### 3. Eliminar Materias
 
--    Eliminás la materia seleccionada.
--    También se eliminan todas las referencias a ella como correlativa en otras materias.
+- Eliminás la materia seleccionada.
+- También se eliminan todas las referencias a ella como correlativa en otras materias.
 
 #### 0. Salir
 
--    Cierra la aplicación.
+- Cierra la aplicación.

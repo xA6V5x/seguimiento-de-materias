@@ -7,7 +7,7 @@
 
 // Se consideran "cursables" aquellas materias No Cursadas cuyas correlatividades
 // ya están finalizadas o aprobadas, es decir, todas sus correlativas tienen estado 4 (Final Pendiente) o 5 (Aprobada).
-void menuAgregarMaterias()
+void agregarMateria()
 {
     materias_t materias = leerBinDeMaterias();
 
