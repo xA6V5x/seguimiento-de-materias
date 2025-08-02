@@ -5,8 +5,6 @@
 #include "../headers/funciones.h"
 #include "../headers/types.h"
 
-// Se consideran "cursables" aquellas materias No Cursadas cuyas correlatividades
-// ya están finalizadas o aprobadas, es decir, todas sus correlativas tienen estado 4 (Final Pendiente) o 5 (Aprobada).
 void agregarMateria()
 {
     materias_t materias = leerBinDeMaterias();
@@ -17,9 +15,50 @@ void agregarMateria()
 
     materia_archivo_t *materiasArray = materias.array;
 
-    materia_archivo_t materiaNueva = {.id = -1, .nombreLength = 2, .nombre = "--", .correlativasLength = 0, .correlativas = NULL};
+    materia_archivo_t materia = {.id = -1, .nombreLength = 2, .correlativasLength = 0, .correlativas = NULL};
 
-    char titulo[19] = "AGREGAR MATERIAS";
+    materia.nombre = miMalloc("inicializar nombre de la materia", sizeof(char) * 3);
 
-    menuMateriaInfo(materiaNueva, materiasLength, materiasArray);
+    strcpy(materia.nombre, "--");
+
+    char titulo[19] = "CREAR MATERIA";
+
+    // menuMateriaInfo(materiaNueva, materiasLength, materiasArray);
+
+    int opcion;
+
+    do
+    {
+        // leerBinEstadoDeMateria(&materia); // Lee el estado y lo guarda en materia.estado
+        system("cls");
+        printf("== AGREGAR MATERIA ==\n");
+        printf("1 - nombre: %s\n", materia.nombre);
+        printf("2 - correlativas: ");
+        printMateriasCorrelativas(materia, materiasLength, materiasArray);
+        printf("-------------------------------\n");
+        printf("3 - Confirmar\n");
+        printf("0 - Volver\n");
+        printf("\nSeleccione una opcion: ");
+
+        scanf("%d", &opcion);
+        limpiarBuffer();
+
+        switch (opcion)
+        {
+        case 1:
+            editarMateriaNombre(&materia);
+            break;
+        case 2:
+            editarMateriaCorrelativas(&materia);
+            break;
+        case 3:
+            actualizarBinMaterias(&materia);
+            break;
+        case 0:
+            break;
+        default:
+            errorOpcionNoValida();
+            break;
+        }
+    } while (opcion != 0);
 }

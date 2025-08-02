@@ -27,7 +27,7 @@ void menuMateriaInfo(materia_archivo_t materia, int materiasLength, materia_arch
         switch (opcion)
         {
         // case 1:
-        //     menuEditarEstadoDeMateria(&materia);
+        // menuEditarEstadoDeMateria(&materia);
         //     break;
         case 0:
             break;

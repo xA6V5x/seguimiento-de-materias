@@ -7,6 +7,7 @@ void crearArchivosMock();
 opciones_acciones_t leerTxtConfig(const ptr_funcion_void_t *funcionesArray);
 materias_t leerBinDeMaterias();
 void agregarMateria();
+void actualizarBinMaterias(materia_archivo_t *materia);
 
 // Utilidades
 void procesarOpcion(int *opcion, const int opcionesArrayLength, const opcion_accion_t *opcionesArray);
@@ -14,6 +15,8 @@ void limpiarBuffer();
 void esperarEnter();
 void *miMalloc(char *contexto, size_t size);
 void sortMateriasPorNombre(int materiasLength, materia_archivo_t *materiasArray);
+void editarMateriaNombre(materia_archivo_t *materia);
+void editarMateriaCorrelativas(materia_archivo_t *materia);
 
 // Menus
 int menuPrincipal();
