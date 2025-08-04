@@ -41,11 +41,11 @@ void filtrarMateriaDelArray(int materiaBuscadaId, int *materiasLength, materia_a
         materia_archivo_t *materiaCpy = &materiasFiltradasArray[indexCount];
 
         // La materia que buscamos sacar del array no la copiamos
-        if (materia->id == materiaBuscadaId)
-            continue; // Pasar a la siguiente materia
-
-        copiarMateria(materiaCpy, materia);
-        indexCount++;
+        if (materia->id != materiaBuscadaId)
+        {
+            copiarMateria(materiaCpy, materia);
+            indexCount++;
+        }
     }
 
     // Liberar el puntero anterior de materiasArray

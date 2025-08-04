@@ -55,21 +55,22 @@ void editarMateriaCorrelativas(materia_archivo_t *materia)
             errorOpcionNoValida();
         }
 
-        int correlativaSeleccionadaId;
+        // Debo guardar el length inicial debido a que eliminarCorrelativa y agregarCorrelativa modifican el valor de correlativasLength
+        int correlativasLengthInicial = *correlativasLength;
 
         // Las opciones desde 1 hasta correlativasLength son correlativas que deben ser removidas
-        if (opcion > 0 && opcion < materia->correlativasLength)
+        if (opcion > 0 && opcion <= correlativasLengthInicial)
         {
             int index = opcion - 1;
-            correlativaSeleccionadaId = correlativasArray[opcion - 1];
-            // eliminarCorrelativa();
+            int correlativaSeleccionadaId = correlativasArray[opcion - 1];
+            eliminarCorrelativa(correlativaSeleccionadaId, materia);
         }
 
         // Las opciones desde correlativasLength hasta materiasLength son correlativas que se deben agregar
-        if (opcion > materia->correlativasLength && opcion < (materiasLength + 1))
+        if (opcion > correlativasLengthInicial && opcion < (materiasLength + 1))
         {
-            int index = opcion - *correlativasLength - 1;
-            correlativaSeleccionadaId = noCorrelativasArray[index].id;
+            int index = opcion - correlativasLengthInicial - 1;
+            int correlativaSeleccionadaId = noCorrelativasArray[index].id;
             agregarCorrelativa(correlativaSeleccionadaId, materia);
         }
 

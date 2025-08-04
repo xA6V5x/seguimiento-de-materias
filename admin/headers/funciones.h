@@ -21,6 +21,7 @@ void copiarMateria(materia_archivo_t *materiaCpy, materia_archivo_t *materia);
 materia_archivo_t *buscarMateriaPorId(int *materiaBuscadaIndex, int materiaId, int materiasLength, materia_archivo_t *materiasArray);
 void filtrarMateriaDelArray(int materiaBuscadaId, int *materiasLength, materia_archivo_t **materiasArray);
 void agregarCorrelativa(int correlativaId, materia_archivo_t *materia);
+void eliminarCorrelativa(int correlativaId, materia_archivo_t *materia);
 
 // Menus
 void menuEditarMaterias();
