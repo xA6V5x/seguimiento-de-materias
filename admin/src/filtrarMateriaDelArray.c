@@ -32,7 +32,7 @@ void filtrarMateriaDelArray(int materiaBuscadaId, int *materiasLength, materia_a
 
     // ----------------------------------------------------------------------
 
-    int indexCount = 0; // posicion actual del materiasCursablesArray
+    int indexCount = 0; // posicion actual del materiasFiltradasArray
 
     for (int i = 0; i < *materiasLength; i++)
     {

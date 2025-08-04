@@ -3,10 +3,12 @@
 #include "types.h"
 
 // Archivos
-void crearArchivosMock();
 opciones_acciones_t leerTxtConfig(const ptr_funcion_void_t *funcionesArray);
 materias_t leerBinDeMaterias();
-void actualizarBinMaterias(materia_archivo_t *materia);
+int leerBinDeContadorId();
+int actualizarBinDeContadorId(int contadorId);
+void actualizarBinMaterias(int materiasLength, materia_archivo_t *materiasArray);
+void agregarMateria(materia_archivo_t materia, int *materiasLength, materia_archivo_t **materiasArray);
 
 // Utilidades
 void procesarOpcion(int *opcion, const int opcionesArrayLength, const opcion_accion_t *opcionesArray);
@@ -15,6 +17,7 @@ void esperarEnter();
 int esOpcionNumericaValida(const char *input, int min, int max, int *opcionTraducida);
 void *miMalloc(char *contexto, size_t size);
 void sortMateriasPorNombre(int materiasLength, materia_archivo_t *materiasArray);
+void sortMateriasPorId(int materiasLength, materia_archivo_t *materiasArray);
 void editarMateriaNombre(materia_archivo_t *materia);
 void editarMateriaCorrelativas(materia_archivo_t *materia);
 void copiarMateria(materia_archivo_t *materiaCpy, materia_archivo_t *materia);

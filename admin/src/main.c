@@ -6,8 +6,6 @@
 
 int main()
 {
-  // materias-length.dat y materias.dat en seguimiento-de-materias/bin
-  // crearArchivosMock(); // Retirar cuando admin este listo
 
   int opcion;
   int confirmarSalida = 0;

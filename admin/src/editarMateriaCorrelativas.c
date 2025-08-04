@@ -22,7 +22,11 @@ void editarMateriaCorrelativas(materia_archivo_t *materia)
     do
     {
         int noCorrelativasLength = materiasLength;
-        materia_archivo_t *noCorrelativasArray = miMalloc("array de materias no correlativas", sizeof(materia_archivo_t) * materiasLength);
+        materia_archivo_t *noCorrelativasArray = NULL;
+        if (materiasLength > 0)
+        {
+            noCorrelativasArray = miMalloc("array de materias no correlativas", sizeof(materia_archivo_t) * materiasLength);
+        }
 
         // Copiar todas las materias
         for (int i = 0; i < materiasLength; i++)

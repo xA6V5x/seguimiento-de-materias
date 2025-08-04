@@ -21,8 +21,6 @@ void menuAgregarMateria()
 
     strcpy(materia.nombre, "--");
 
-    char titulo[19] = "CREAR MATERIA";
-
     int opcion;
 
     do
@@ -49,7 +47,8 @@ void menuAgregarMateria()
             editarMateriaCorrelativas(&materia);
             break;
         case 3:
-            actualizarBinMaterias(&materia);
+            agregarMateria(materia, &materiasLength, &materiasArray);
+
             break;
         case 0:
             break;

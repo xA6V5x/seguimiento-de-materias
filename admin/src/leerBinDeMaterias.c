@@ -12,9 +12,12 @@ materias_t leerBinDeMaterias()
     if (materiasLengthFile == NULL)
     {
         fclose(materiasLengthFile);
-        printf("Error al abrir materias-length.dat\n");
-        esperarEnter();
-        exit(1);
+        actualizarBinMaterias(0, NULL); // Inicializar los archivos
+
+        materias.length = 0;
+        materias.array = NULL;
+
+        return materias;
     }
 
     size_t materiasLengthLeidos = fread(&materias.length, sizeof(int), 1, materiasLengthFile);
@@ -31,6 +34,13 @@ materias_t leerBinDeMaterias()
 
     // ---------------------------------------------------
 
+    if (materias.length == 0)
+    {
+        materias.array = NULL;
+        return materias;
+    }
+
+    // ---------------------------------------------------
     materias.array = miMalloc("las materias consumidas de materias.dat", sizeof(materia_archivo_t) * materias.length);
 
     FILE *materiasFile = fopen("../bin/materias.dat", "rb");
