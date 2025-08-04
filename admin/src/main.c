@@ -6,7 +6,6 @@
 
 int main()
 {
-
   int opcion;
   int confirmarSalida = 0;
 
@@ -15,7 +14,7 @@ int main()
 
   do
   {
-    printMenuPrincipal();
+    printMenuPrincipal(opcionesArrayLength, opcionesArray);
     scanf("%d", &opcion);
     limpiarBuffer();
     procesarOpcion(&opcion, opcionesArrayLength, opcionesArray);

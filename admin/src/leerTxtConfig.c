@@ -53,8 +53,6 @@ opciones_acciones_t leerTxtConfig(const ptr_funcion_void_t *funcionesArray)
         fgets(opcionesArray[i].text, textLength + 1, fp);
 
         opcionesArray[i].funcion = funcionesArray[funcionIndex];
-
-        printf("%s\n", opcionesArray[i].text);
     }
 
     fclose(fp);

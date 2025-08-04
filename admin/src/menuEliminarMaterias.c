@@ -17,5 +17,5 @@ void menuEliminarMaterias()
 
     materia_archivo_t *materiasArray = materias.array;
 
-    menuSeleccionMateria(estadoId, titulo, &materiasLength, &materiasArray);
+    menuSeleccionMateria(titulo, menuEditarMateria);
 }

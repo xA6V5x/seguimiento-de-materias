@@ -11,21 +11,8 @@ int leerBinDeContadorId()
     FILE *fr = fopen("./bin/contador-id.dat", "rb");
     if (fr == NULL)
     {
-        fclose(fr);
-
-        materias_t materias = leerBinDeMaterias();
-
-        int maxIdActual = 0;
-
-        if (materias.length > 0)
-        {
-            // Ordenar por id para poder obtener el id mas alto como referencia
-            sortMateriasPorId(materias.length, materias.array);
-            maxIdActual = materias.array[materias.length - 1].id;
-        }
-
-        // Le envio el id mas alto actual, le suma 1 y lo guarda en contador-id.dat
-        int nuevoContadorId = actualizarBinDeContadorId(maxIdActual);
+        // Si no existe contador-id.dat crearlo
+        int nuevoContadorId = actualizarBinDeContadorId(NULL, NULL);
 
         return nuevoContadorId;
     }

@@ -11,8 +11,8 @@ materias_t leerBinDeMaterias()
     FILE *materiasLengthFile = fopen("../bin/materias-length.dat", "rb");
     if (materiasLengthFile == NULL)
     {
-        fclose(materiasLengthFile);
-        actualizarBinMaterias(0, NULL); // Inicializar los archivos
+        // Si materias-length.dat no exite inicializarlo junto con materias.dat
+        actualizarBinMaterias(0, NULL);
 
         materias.length = 0;
         materias.array = NULL;
@@ -44,9 +44,9 @@ materias_t leerBinDeMaterias()
     materias.array = miMalloc("las materias consumidas de materias.dat", sizeof(materia_archivo_t) * materias.length);
 
     FILE *materiasFile = fopen("../bin/materias.dat", "rb");
+
     if (materiasFile == NULL)
     {
-        fclose(materiasFile);
         printf("Error al abrir materias.dat\n");
         esperarEnter();
         exit(1);

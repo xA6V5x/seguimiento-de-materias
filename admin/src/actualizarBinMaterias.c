@@ -7,7 +7,10 @@
 
 void actualizarBinMaterias(int materiasLength, materia_archivo_t *materiasArray)
 {
-    // crear archivo materias-length.dat y materias.dat
+    // Actualizar el contador-id.dat con el id mas alto disponible
+    actualizarBinDeContadorId(&materiasLength, materiasArray);
+
+    // crear archivo materias-length.dat
     FILE *materiasLengthFile = fopen("../bin/materias-length.dat", "wb");
 
     if (!materiasLengthFile)
@@ -23,6 +26,7 @@ void actualizarBinMaterias(int materiasLength, materia_archivo_t *materiasArray)
 
     // ------------------------------------------------------------------------------------
 
+    // crear archivo materias.dat
     FILE *materiasFile = fopen("../bin/materias.dat", "wb");
     if (materiasFile == NULL)
     {

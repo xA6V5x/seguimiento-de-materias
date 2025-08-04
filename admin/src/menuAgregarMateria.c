@@ -21,40 +21,7 @@ void menuAgregarMateria()
 
     strcpy(materia.nombre, "--");
 
-    int opcion;
+    materia_archivo_t *ptrMateriaEnElArray = agregarMateriaAlArray(materia, &materiasLength, &materiasArray);
 
-    do
-    {
-        system("cls");
-        printf("== CREAR MATERIA ==\n");
-        printf("1 - nombre: %s\n", materia.nombre);
-        printf("2 - correlativas: ");
-        printMateriasCorrelativas(materia, materiasLength, materiasArray);
-        printf("-------------------------------\n");
-        printf("3 - Confirmar\n");
-        printf("0 - Volver\n");
-        printf("\nSeleccione una opcion: ");
-
-        scanf("%d", &opcion);
-        limpiarBuffer();
-
-        switch (opcion)
-        {
-        case 1:
-            editarMateriaNombre(&materia);
-            break;
-        case 2:
-            editarMateriaCorrelativas(&materia);
-            break;
-        case 3:
-            agregarMateria(materia, &materiasLength, &materiasArray);
-
-            break;
-        case 0:
-            break;
-        default:
-            errorOpcionNoValida();
-            break;
-        }
-    } while (opcion != 0 && opcion != 3);
+    menuEditarMateria("CREAR MATERIA", ptrMateriaEnElArray, materiasLength, materiasArray);
 }

@@ -5,7 +5,7 @@
 #include "../headers/types.h"
 
 static const ptr_funcion_void_t funcionesArray[6] = {
-    menuEditarMaterias,
+    menuSeleccionMateriaParaEditar,
     menuAgregarMateria,
     menuEliminarMaterias,
 };

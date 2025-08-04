@@ -5,14 +5,11 @@
 #include "../headers/funciones.h"
 #include "../headers/types.h"
 
-void agregarMateria(materia_archivo_t materia, int *materiasLength, materia_archivo_t **materiasArray)
+materia_archivo_t *agregarMateriaAlArray(materia_archivo_t materia, int *materiasLength, materia_archivo_t **materiasArray)
 {
     // Darle un id disponible a la materia
     int nuevoIdDisponible = leerBinDeContadorId();
     materia.id = nuevoIdDisponible;
-
-    // Actualizar el archivo contador-id.dat
-    actualizarBinDeContadorId(nuevoIdDisponible);
 
     int nuevoMateriasLength = *materiasLength + 1;
     materia_archivo_t *nuevoMateriasArray = miMalloc("materiasArray con nueva materia", sizeof(materia_archivo_t) * nuevoMateriasLength);
@@ -34,9 +31,7 @@ void agregarMateria(materia_archivo_t materia, int *materiasLength, materia_arch
     // Actualizar el largo del materias array
     *materiasLength = nuevoMateriasLength;
 
-    actualizarBinMaterias(*materiasLength, *materiasArray);
+    materia_archivo_t *ptrMateriaEnElArray = &(*materiasArray)[*materiasLength - 1];
 
-    system("cls");
-    printf("La materia %s se creo exitosamente.", materia.nombre);
-    esperarEnter();
+    return ptrMateriaEnElArray;
 }
