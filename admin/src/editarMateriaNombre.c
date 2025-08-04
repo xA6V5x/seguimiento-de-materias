@@ -21,6 +21,12 @@ void editarMateriaNombre(materia_archivo_t *materia)
     // Obtener longitud de la string
     int strLength = strlen(buffer);
 
+    // Si el nombre nuevo esta vacio seguir usando el anterior
+    if (strLength == 0)
+    {
+        return;
+    }
+
     materia->nombreLength = strLength;
 
     materia->nombre = miMalloc("nombre de la materia", sizeof(char) * (strLength + 1));

@@ -5,7 +5,7 @@
 #include "../headers/funciones.h"
 #include "../headers/types.h"
 
-void agregarMateria()
+void menuAgregarMateria()
 {
     materias_t materias = leerBinDeMaterias();
 
@@ -23,15 +23,12 @@ void agregarMateria()
 
     char titulo[19] = "CREAR MATERIA";
 
-    // menuMateriaInfo(materiaNueva, materiasLength, materiasArray);
-
     int opcion;
 
     do
     {
-        // leerBinEstadoDeMateria(&materia); // Lee el estado y lo guarda en materia.estado
         system("cls");
-        printf("== AGREGAR MATERIA ==\n");
+        printf("== CREAR MATERIA ==\n");
         printf("1 - nombre: %s\n", materia.nombre);
         printf("2 - correlativas: ");
         printMateriasCorrelativas(materia, materiasLength, materiasArray);
@@ -60,5 +57,5 @@ void agregarMateria()
             errorOpcionNoValida();
             break;
         }
-    } while (opcion != 0);
+    } while (opcion != 0 && opcion != 3);
 }

@@ -7,6 +7,7 @@
 
 void actualizarBinMaterias(materia_archivo_t *materia)
 {
+    system("cls");
     printf("La materia {Nombre} se creo exitosamente.");
     esperarEnter();
 }

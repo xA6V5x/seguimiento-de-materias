@@ -7,53 +7,73 @@
 
 void editarMateriaCorrelativas(materia_archivo_t *materia)
 {
+    char buffer[100];
     int opcion;
-
-    int contadorOpcion = 1;
+    int esValido = 0;
 
     materias_t materias = leerBinDeMaterias();
 
-    int estadoId = 0;
-
     int materiasLength = materias.length;
-
     materia_archivo_t *materiasArray = materias.array;
+
+    int *correlativasLength = &materia->correlativasLength;
+    int *correlativasArray = materia->correlativas;
+
     do
     {
+        int noCorrelativasLength = materiasLength;
+        materia_archivo_t *noCorrelativasArray = miMalloc("array de materias no correlativas", sizeof(materia_archivo_t) * materiasLength);
+
+        // Copiar todas las materias
+        for (int i = 0; i < materiasLength; i++)
+        {
+            copiarMateria(&noCorrelativasArray[i], &materiasArray[i]);
+        }
+
+        // Sacar del materiasNoCorrelativasArray las materias que son correlativas
+        for (int i = 0; i < *correlativasLength; i++)
+        {
+            filtrarMateriaDelArray(correlativasArray[i], &noCorrelativasLength, &noCorrelativasArray);
+        }
+
         system("cls");
 
         printf("== SELECCIONAR CORRELATIVAS ==\n");
         printf("0 - Cancelar\n");
         printf("-------------------------------\n");
 
-        if (materia->correlativasLength > 0)
-        {
-            for (int i = 0; i < materia->correlativasLength; i++)
-            {
-                printf("%d - %d\n", contadorOpcion, (materiasArray[i].correlativas));
-                contadorOpcion++;
-            }
-            printf("-------------------------------\n");
-        }
-
-        // No tener en cuenta las materias que actualmente son correlativas
-        if ((materiasLength - materia->correlativasLength) == 0)
-        {
-            printf("\n**NO SE ENCONTRARON MAS MATERIAS**\n");
-        }
-        else
-        {
-            for (int i = 0; i < materiasLength; i++)
-            {
-                printf("%d - %s\n", contadorOpcion, (materiasArray[i].nombre));
-                contadorOpcion++;
-            }
-        }
+        printSeleccionarCorrelativas(*correlativasLength, correlativasArray, noCorrelativasLength, noCorrelativasArray, materiasLength, materiasArray);
 
         printf("\nSeleccione una opcion: ");
-        scanf("%d", &opcion);
-        limpiarBuffer();
-    } while (opcion != 0);
+
+        fgets(buffer, sizeof(buffer), stdin);
+        buffer[strcspn(buffer, "\n")] = 0;
+        esValido = esOpcionNumericaValida(buffer, 0, materiasLength, &opcion);
+
+        if (!esValido)
+        {
+            errorOpcionNoValida();
+        }
+
+        int correlativaSeleccionadaId;
+
+        // Las opciones desde 1 hasta correlativasLength son correlativas que deben ser removidas
+        if (opcion > 0 && opcion < materia->correlativasLength)
+        {
+            int index = opcion - 1;
+            correlativaSeleccionadaId = correlativasArray[opcion - 1];
+            // eliminarCorrelativa();
+        }
+
+        // Las opciones desde correlativasLength hasta materiasLength son correlativas que se deben agregar
+        if (opcion > materia->correlativasLength && opcion < (materiasLength + 1))
+        {
+            int index = opcion - *correlativasLength - 1;
+            correlativaSeleccionadaId = noCorrelativasArray[index].id;
+            agregarCorrelativa(correlativaSeleccionadaId, materia);
+        }
+
+    } while (!esValido);
 
     return;
 }

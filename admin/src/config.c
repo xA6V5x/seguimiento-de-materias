@@ -6,7 +6,7 @@
 
 static const ptr_funcion_void_t funcionesArray[6] = {
     menuEditarMaterias,
-    agregarMateria,
+    menuAgregarMateria,
     menuEliminarMaterias,
 };
 
