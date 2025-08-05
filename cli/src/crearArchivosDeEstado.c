@@ -17,8 +17,10 @@ void crearArchivosDeEstado()
     {
         char filename[50];
 
+        int materiaId = materiasArray[i].id;
+
         // Construir el path para cada archivo binario individual de materia
-        sprintf(filename, "./bin/%d.dat", materiasArray[i].id);
+        sprintf(filename, "./bin/%d.dat", materiaId);
 
         // Intentar abrir el archivo en modo lectura binaria
         FILE *fr = fopen(filename, "rb");
