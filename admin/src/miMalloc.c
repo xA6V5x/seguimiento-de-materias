@@ -6,6 +6,7 @@ void *miMalloc(char *contexto, size_t size)
 {
     if (size == 0)
     {
+        system("cls");
         printf("Error: se ha intentado asignar memoria de size cero en %s.\n", contexto);
         esperarEnter();
         exit(1);
@@ -14,6 +15,7 @@ void *miMalloc(char *contexto, size_t size)
     void *ptr = malloc(size);
     if (ptr == NULL)
     {
+        system("cls");
         printf("Error al asignar memoria para %s.\n", contexto);
         esperarEnter();
         exit(1);

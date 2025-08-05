@@ -1,11 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "../headers/config.h"
 #include "../headers/funciones.h"
 #include "../headers/types.h"
 
-void editarMateriaNombre(materia_archivo_t *materia)
+void stringToLower(char *dest, const char *src)
+{
+    int i = 0;
+    while (src[i])
+    {
+        dest[i] = tolower((unsigned char)src[i]);
+        i++;
+    }
+    dest[i] = '\0';
+}
+
+void editarMateriaNombre(materia_archivo_t *materia, int materiasLength, materia_archivo_t *materiasArray)
 {
     system("cls");
 
@@ -27,11 +39,37 @@ void editarMateriaNombre(materia_archivo_t *materia)
         return;
     }
 
+    char bufferLower[strLength];
+
+    // normailizar el nombre de la materia para que este en minusculas
+    stringToLower(bufferLower, buffer);
+
+    // Comprobar que no se repita un nombre de materia ---------------------------------------------
+    int elNombreYaExiste = 0;
+
+    for (int i = 0; i < materiasLength; i++)
+    {
+        if (strcmp(bufferLower, materiasArray[i].nombre) == 0)
+        {
+            elNombreYaExiste = 1;
+            break;
+        }
+    }
+
+    if (elNombreYaExiste)
+    {
+        system("cls");
+        printf("Error: El nombre de la materia ingresado ya existe, por favor elige otro.");
+        esperarEnter();
+        return;
+    }
+    // ---------------------------------------------------------------------------------------------
+
     materia->nombreLength = strLength;
 
     materia->nombre = miMalloc("nombre de la materia", sizeof(char) * (strLength + 1));
 
-    strcpy(materia->nombre, buffer);
+    strcpy(materia->nombre, bufferLower);
 
     free(viejoNombre);
 

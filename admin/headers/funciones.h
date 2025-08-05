@@ -19,7 +19,7 @@ int esOpcionNumericaValida(const char *input, int min, int max, int *opcionTradu
 void *miMalloc(char *contexto, size_t size);
 void sortMateriasPorNombre(int materiasLength, materia_archivo_t *materiasArray);
 void sortMateriasPorId(int materiasLength, materia_archivo_t *materiasArray);
-void editarMateriaNombre(materia_archivo_t *materia);
+void editarMateriaNombre(materia_archivo_t *materia, int materiasLength, materia_archivo_t *materiasArray);
 void editarMateriaCorrelativas(materia_archivo_t *materia);
 void copiarMateria(materia_archivo_t *materiaCpy, materia_archivo_t *materia);
 materia_archivo_t *buscarMateriaPorId(int *materiaBuscadaIndex, int materiaId, int materiasLength, materia_archivo_t *materiasArray);

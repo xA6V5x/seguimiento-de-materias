@@ -16,7 +16,13 @@ void eliminarMateria(char *t, materia_archivo_t *materia, int *materiasLength, m
     int materiaBuscadaId = materia->id;
 
     int nuevoMateriasLength = *materiasLength - 1;
-    materia_archivo_t *nuevoMateriasArray = miMalloc("materiasArray con materia eliminada", sizeof(materia_archivo_t) * nuevoMateriasLength);
+
+    materia_archivo_t *nuevoMateriasArray = NULL;
+
+    if (nuevoMateriasLength > 0)
+    {
+        nuevoMateriasArray = miMalloc("materiasArray con materia eliminada", sizeof(materia_archivo_t) * nuevoMateriasLength);
+    }
 
     // Copiar todas las materias actuales
     for (int i = 0; i < *materiasLength; i++)

@@ -28,7 +28,7 @@ void menuEditarMateria(char *title, materia_archivo_t *materia, int *materiasLen
         switch (opcion)
         {
         case 1:
-            editarMateriaNombre(materia);
+            editarMateriaNombre(materia, *materiasLength, *materiasArray);
             break;
         case 2:
             editarMateriaCorrelativas(materia);
