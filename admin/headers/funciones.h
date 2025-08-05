@@ -4,11 +4,11 @@
 
 // Archivos
 opciones_acciones_t leerTxtConfig(const ptr_funcion_void_t *funcionesArray);
-materias_t leerBinDeMaterias();
+materias_t *leerBinDeMaterias();
 int leerBinDeContadorId();
 int actualizarBinDeContadorId(int *materiasLength, materia_archivo_t *materiasArray);
 void actualizarBinMaterias(int materiasLength, materia_archivo_t *materiasArray);
-materia_archivo_t *agregarMateriaAlArray(materia_archivo_t materia, int *materiasLength, materia_archivo_t **materiasArray);
+void confirmarEliminarMateria(materia_archivo_t *materia, int materiasLength, materia_archivo_t *materiasArray);
 
 // Utilidades
 void procesarOpcion(int *opcion, const int opcionesArrayLength, const opcion_accion_t *opcionesArray);
@@ -25,12 +25,14 @@ materia_archivo_t *buscarMateriaPorId(int *materiaBuscadaIndex, int materiaId, i
 void filtrarMateriaDelArray(int materiaBuscadaId, int *materiasLength, materia_archivo_t **materiasArray);
 void agregarCorrelativa(int correlativaId, materia_archivo_t *materia);
 void eliminarCorrelativa(int correlativaId, materia_archivo_t *materia);
+materia_archivo_t *agregarMateriaAlArray(materia_archivo_t materia, int *materiasLength, materia_archivo_t **materiasArray);
+void eliminarMateriaDelArray(char *title, materia_archivo_t *materia, int *materiasLength, materia_archivo_t **materiasArray);
 
 // Menus
 void menuSeleccionMateriaParaEditar();
-void menuEditarMateria(char *title, materia_archivo_t *materia, int materiasLength, materia_archivo_t *materiasArray);
 void menuAgregarMateria();
-void menuEliminarMaterias();
+void menuSeleccionMateriaParaEliminar();
+void menuEditarMateria(char *title, materia_archivo_t *materia, int *materiasLength, materia_archivo_t **materiasArray);
 void menuSeleccionMateria(char *titulo, ptr_funcion_editar_eliminar_materia_t funcion);
 void menuMateriaInfo(materia_archivo_t materia, int materiasLength, materia_archivo_t *materiasArray);
 

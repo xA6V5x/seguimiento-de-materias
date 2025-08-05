@@ -7,13 +7,13 @@
 
 void menuAgregarMateria()
 {
-    materias_t materias = leerBinDeMaterias();
+    char titulo[14] = "CREAR MATERIA";
 
-    int estadoId = 0;
+    materias_t *materias = leerBinDeMaterias();
 
-    int materiasLength = materias.length;
+    int *materiasLength = &materias->length;
 
-    materia_archivo_t *materiasArray = materias.array;
+    materia_archivo_t *materiasArray = materias->array;
 
     materia_archivo_t materia = {.id = -1, .nombreLength = 2, .correlativasLength = 0, .correlativas = NULL};
 
@@ -21,7 +21,7 @@ void menuAgregarMateria()
 
     strcpy(materia.nombre, "--");
 
-    materia_archivo_t *ptrMateriaEnElArray = agregarMateriaAlArray(materia, &materiasLength, &materiasArray);
+    materia_archivo_t *ptrMateriaEnElArray = agregarMateriaAlArray(materia, materiasLength, &materiasArray);
 
-    menuEditarMateria("CREAR MATERIA", ptrMateriaEnElArray, materiasLength, materiasArray);
+    menuEditarMateria(titulo, ptrMateriaEnElArray, materiasLength, &materiasArray);
 }

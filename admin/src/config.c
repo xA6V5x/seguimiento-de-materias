@@ -7,7 +7,7 @@
 static const ptr_funcion_void_t funcionesArray[6] = {
     menuSeleccionMateriaParaEditar,
     menuAgregarMateria,
-    menuEliminarMaterias,
+    menuSeleccionMateriaParaEliminar,
 };
 
 static const int NO_CURSADA_ID = 1;

@@ -22,7 +22,7 @@ void agregarCorrelativa(int correlativaId, materia_archivo_t *materia)
     nuevasCorrelativas[nuevoCorrelativasLength - 1] = correlativaId;
 
     // Liberar el antiguo puntero a correlativas
-    free(materia->correlativas);
+    // free(materia->correlativas); // ERROR DE LIBERACION
 
     // Actualizar el largo del array de correlativas
     materia->correlativasLength = nuevoCorrelativasLength;

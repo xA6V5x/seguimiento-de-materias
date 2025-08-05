@@ -11,25 +11,25 @@ void editarMateriaCorrelativas(materia_archivo_t *materia)
     int opcion;
     int esValido = 0;
 
-    materias_t materias = leerBinDeMaterias();
+    materias_t *materias = leerBinDeMaterias();
 
-    int materiasLength = materias.length;
-    materia_archivo_t *materiasArray = materias.array;
+    int *materiasLength = &materias->length;
+    materia_archivo_t *materiasArray = materias->array;
 
     int *correlativasLength = &materia->correlativasLength;
     int *correlativasArray = materia->correlativas;
 
     do
     {
-        int noCorrelativasLength = materiasLength;
+        int noCorrelativasLength = *materiasLength;
         materia_archivo_t *noCorrelativasArray = NULL;
         if (materiasLength > 0)
         {
-            noCorrelativasArray = miMalloc("array de materias no correlativas", sizeof(materia_archivo_t) * materiasLength);
+            noCorrelativasArray = miMalloc("array de materias no correlativas", sizeof(materia_archivo_t) * (*materiasLength));
         }
 
         // Copiar todas las materias
-        for (int i = 0; i < materiasLength; i++)
+        for (int i = 0; i < *materiasLength; i++)
         {
             copiarMateria(&noCorrelativasArray[i], &materiasArray[i]);
         }
@@ -46,13 +46,13 @@ void editarMateriaCorrelativas(materia_archivo_t *materia)
         printf("0 - Cancelar\n");
         printf("-------------------------------\n");
 
-        printSeleccionarCorrelativas(*correlativasLength, correlativasArray, noCorrelativasLength, noCorrelativasArray, materiasLength, materiasArray);
+        printSeleccionarCorrelativas(*correlativasLength, correlativasArray, noCorrelativasLength, noCorrelativasArray, *materiasLength, materiasArray);
 
         printf("\nSeleccione una opcion: ");
 
         fgets(buffer, sizeof(buffer), stdin);
         buffer[strcspn(buffer, "\n")] = 0;
-        esValido = esOpcionNumericaValida(buffer, 0, materiasLength, &opcion);
+        esValido = esOpcionNumericaValida(buffer, 0, *materiasLength, &opcion);
 
         if (!esValido)
         {
@@ -71,7 +71,7 @@ void editarMateriaCorrelativas(materia_archivo_t *materia)
         }
 
         // Las opciones desde correlativasLength hasta materiasLength son correlativas que se deben agregar
-        if (opcion > correlativasLengthInicial && opcion < (materiasLength + 1))
+        if (opcion > correlativasLengthInicial && opcion < (*materiasLength + 1))
         {
             int index = opcion - correlativasLengthInicial - 1;
             int correlativaSeleccionadaId = noCorrelativasArray[index].id;

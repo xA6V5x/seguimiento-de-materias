@@ -14,13 +14,13 @@ void menuSeleccionMateria(char *titulo, ptr_funcion_editar_eliminar_materia_t fu
     {
         // ----------------------------------------------------
         // Leer materias y ordenarlas dentro del bucle por si la cantidad de materias cambia o si el nombre es modificado
-        materias_t materias = leerBinDeMaterias();
+        materias_t *materias = leerBinDeMaterias();
 
-        int materiasLength = materias.length;
+        int *materiasLength = &materias->length;
 
-        materia_archivo_t *materiasArray = materias.array;
+        materia_archivo_t *materiasArray = materias->array;
 
-        sortMateriasPorNombre(materiasLength, materiasArray);
+        sortMateriasPorNombre(*materiasLength, materiasArray);
         // ----------------------------------------------------
 
         system("cls");
@@ -28,13 +28,13 @@ void menuSeleccionMateria(char *titulo, ptr_funcion_editar_eliminar_materia_t fu
         printf("0 - Volver\n");
         printf("-------------------------------\n");
 
-        if (materiasLength == 0)
+        if (*materiasLength == 0)
         {
             printf("\n**NO SE ENCONTRARON MATERIAS**\n");
         }
         else
         {
-            for (int i = 0; i < materiasLength; i++)
+            for (int i = 0; i < *materiasLength; i++)
             {
                 printf("%d - %s\n", i + 1, materiasArray[i].nombre);
             }
@@ -47,11 +47,11 @@ void menuSeleccionMateria(char *titulo, ptr_funcion_editar_eliminar_materia_t fu
         {
             break;
         }
-        else if (opcion >= 1 && opcion <= materiasLength)
+        else if (opcion >= 1 && opcion <= *materiasLength)
         {
             char tituloFuncion[15] = "EDITAR MATERIA";
             int indexMateriaSeleccionada = opcion - 1;
-            funcion(tituloFuncion, &materiasArray[opcion - 1], materiasLength, materiasArray);
+            funcion(tituloFuncion, &materiasArray[opcion - 1], materiasLength, &materiasArray);
         }
         else
         {

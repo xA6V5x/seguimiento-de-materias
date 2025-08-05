@@ -9,7 +9,7 @@ void eliminarCorrelativa(int correlativaId, materia_archivo_t *materia)
 {
     int nuevoCorrelativasLength = materia->correlativasLength - 1;
 
-    if (nuevoCorrelativasLength == 0)
+    if (nuevoCorrelativasLength <= 0)
     {
         materia->correlativasLength = 0;
         return;
