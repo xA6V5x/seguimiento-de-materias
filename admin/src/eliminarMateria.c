@@ -25,12 +25,13 @@ void eliminarMateria(char *t, materia_archivo_t *materia, int *materiasLength, m
     }
 
     // Copiar todas las materias actuales
+    int indexCount = 0; // posicion actual del nuevoMateriasArray
     for (int i = 0; i < *materiasLength; i++)
     {
         materia_archivo_t *materiaSrc = &(*materiasArray)[i];
         int materiaId = materiaSrc->id;
 
-        materia_archivo_t *materiaCpy = &nuevoMateriasArray[i];
+        materia_archivo_t *materiaCpy = &nuevoMateriasArray[indexCount];
 
         // No copiar la materia que queremos eliminar
         if (materiaId != materiaBuscadaId)
@@ -39,17 +40,9 @@ void eliminarMateria(char *t, materia_archivo_t *materia, int *materiasLength, m
             copiarMateria(materiaCpy, materiaSrc);
             // Si tiene de correlativa la materia a eliminar, quitar del array de correlativas
             eliminarCorrelativa(materiaBuscadaId, materiaCpy);
-        }
-    }
 
-    for (int i = 0; i < nuevoMateriasLength; i++)
-    {
-        printf("%s: ", nuevoMateriasArray[i].nombre);
-        for (int j = 0; j < nuevoMateriasArray[i].correlativasLength; j++)
-        {
-            printf("%d ", nuevoMateriasArray[i].correlativas[j]);
+            indexCount++;
         }
-        printf("\n");
     }
 
     // Liberar el antiguo puntero de materiasArray
