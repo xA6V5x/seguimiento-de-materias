@@ -40,7 +40,7 @@ void menuMateriaInfo(materia_archivo_t materia, int materiasLength, materia_arch
 void printMenuPrincipal(const int opcionesArrayLength, const opcion_accion_t *opcionesArray);
 void printEstadoMateria(int estado);
 void printMateriasCorrelativas(materia_archivo_t materia, int materiasLength, materia_archivo_t *materiasArray);
-void printSeleccionarCorrelativas(int correlativasLength, int *correlativasArray, int noCorrelativasLength, materia_archivo_t *noCorrelativasArray, int materiasLength, materia_archivo_t *materiasArray);
+void printSeleccionarCorrelativas(int correlativasLength, materia_archivo_t *correlativasArray, int noCorrelativasLength, materia_archivo_t *noCorrelativasArray, int materiasLength, materia_archivo_t *materiasArray);
 int confirmarCierreDelPrograma();
 
 // Errores

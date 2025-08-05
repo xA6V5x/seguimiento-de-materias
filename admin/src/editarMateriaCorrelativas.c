@@ -16,14 +16,38 @@ void editarMateriaCorrelativas(materia_archivo_t *materia)
     int *materiasLength = &materias->length;
     materia_archivo_t *materiasArray = materias->array;
 
-    int *correlativasLength = &materia->correlativasLength;
-    int *correlativasArray = materia->correlativas;
+    // Sacar del materias array la materia principal, siendo que no puede ser correlativa de si misma
+    filtrarMateriaDelArray(materia->id, materiasLength, &materiasArray);
 
     do
     {
+        // CORRELATIVAS ----------------------------------------------------------------------------
+        int *correlativasLength = &materia->correlativasLength;
+        int *correlativasArrayId = materia->correlativas;
+        materia_archivo_t *correlativasArray = NULL;
+
+        if (*correlativasLength > 0)
+        {
+            correlativasArray = miMalloc("array de materias correlativas", sizeof(materia_archivo_t) * (*correlativasLength));
+        }
+
+        // Buscar y guardar la informacion de la materia correlativa
+        for (int i = 0; i < *correlativasLength; i++)
+        {
+            correlativasArray = miMalloc("array de materias correlativas", sizeof(materia_archivo_t) * (*correlativasLength));
+            materia_archivo_t *materiaBuscada = buscarMateriaPorId(NULL, correlativasArrayId[i], *materiasLength, materiasArray);
+            copiarMateria(&correlativasArray[i], materiaBuscada);
+        }
+
+        // Ordenas las materias correlativas
+        // sortMateriasPorNombre(*correlativasLength, correlativasArray);
+
+        // -----------------------------------------------------------------------------------------
+
+        // NO CORRELATIVAS -------------------------------------------------------------------------
         int noCorrelativasLength = *materiasLength;
         materia_archivo_t *noCorrelativasArray = NULL;
-        if (materiasLength > 0)
+        if (*materiasLength > 0)
         {
             noCorrelativasArray = miMalloc("array de materias no correlativas", sizeof(materia_archivo_t) * (*materiasLength));
         }
@@ -37,8 +61,13 @@ void editarMateriaCorrelativas(materia_archivo_t *materia)
         // Sacar del materiasNoCorrelativasArray las materias que son correlativas
         for (int i = 0; i < *correlativasLength; i++)
         {
-            filtrarMateriaDelArray(correlativasArray[i], &noCorrelativasLength, &noCorrelativasArray);
+            filtrarMateriaDelArray(correlativasArray[i].id, &noCorrelativasLength, &noCorrelativasArray);
         }
+
+        // Ordenas las materias no correlativas
+        sortMateriasPorNombre(noCorrelativasLength, noCorrelativasArray);
+
+        // -----------------------------------------------------------------------------------------
 
         system("cls");
 
@@ -66,7 +95,7 @@ void editarMateriaCorrelativas(materia_archivo_t *materia)
         if (opcion > 0 && opcion <= correlativasLengthInicial)
         {
             int index = opcion - 1;
-            int correlativaSeleccionadaId = correlativasArray[opcion - 1];
+            int correlativaSeleccionadaId = correlativasArray[opcion - 1].id;
             eliminarCorrelativa(correlativaSeleccionadaId, materia);
         }
 
