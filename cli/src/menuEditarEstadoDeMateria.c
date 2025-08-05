@@ -10,7 +10,7 @@ void menuEditarEstadoDeMateria(materia_t *materia)
     do
     {
         system("cls");
-        printf("== NUEVO ESTADO DE Fisica-1 ==\n");
+        printf("== NUEVO ESTADO DE %s ==\n", materia->nombre);
         printf("1 - %s\n", config_get_no_cursada_string());
         printf("2 - %s\n", config_get_en_curso_string());
         printf("3 - %s\n", config_get_siguiente_cuatrimestre_string());
