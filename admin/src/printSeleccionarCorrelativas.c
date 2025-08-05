@@ -14,7 +14,7 @@ void printSeleccionarCorrelativas(int correlativasLength, materia_archivo_t *cor
     {
         for (int i = 0; i < correlativasLength; i++)
         {
-            printf("%d - %s [ Quitar ] X\n", contadorOpcion, (correlativasArray[i].nombre));
+            printf("%d - %s [ Quitar ] X\n", contadorOpcion, correlativasArray[i].nombre);
             contadorOpcion++;
         }
         printf("-------------------------------\n");

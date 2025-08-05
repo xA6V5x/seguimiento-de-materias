@@ -38,7 +38,7 @@ void menuEditarMateria(char *title, materia_archivo_t *materia, int *materiasLen
             strcpy(materiaNombre, materia->nombre);
             actualizarBinMaterias(*materiasLength, *materiasArray);
             system("cls");
-            printf("La materia %s se actualzo exitosamente.", materiaNombre);
+            printf("La materia %s se actualizo exitosamente.\n", materiaNombre);
             esperarEnter();
             free(materiaNombre);
             break;

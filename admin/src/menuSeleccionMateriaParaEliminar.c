@@ -9,5 +9,5 @@ void menuSeleccionMateriaParaEliminar()
 {
     char titulo[20] = "ELIMINAR MATERIAS";
 
-    menuSeleccionMateria(titulo, eliminarMateriaDelArray);
+    menuSeleccionMateria(titulo, NULL, eliminarMateria);
 }

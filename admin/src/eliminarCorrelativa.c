@@ -7,9 +7,29 @@
 
 void eliminarCorrelativa(int correlativaId, materia_archivo_t *materia)
 {
+    // Comprobar que contiene la correlativaId buscada ---------------------------------------------
+    int tieneLaCorrelativaBuscada = 0;
+
+    for (int i = 0; i < materia->correlativasLength; i++)
+    {
+        if (materia->correlativas[i] == correlativaId)
+        {
+            tieneLaCorrelativaBuscada = 1; // Contiene la correlativa
+            break;
+        }
+    }
+
+    // si no tiene la correlativa no hacer ningun cambio
+    if (!tieneLaCorrelativaBuscada)
+        return;
+
+    // ---------------------------------------------------------------------------------------------
+
+    // Si contiene la correlativa, generar un nuevo array sin la correlativaId
+
     int nuevoCorrelativasLength = materia->correlativasLength - 1;
 
-    if (nuevoCorrelativasLength <= 0)
+    if (nuevoCorrelativasLength == 0)
     {
         materia->correlativasLength = 0;
         return;
@@ -19,6 +39,7 @@ void eliminarCorrelativa(int correlativaId, materia_archivo_t *materia)
     int *nuevasCorrelativas = miMalloc("array de correlativas", sizeof(int) * nuevoCorrelativasLength);
 
     int indexCount = 0; // posicion actual del materiasCursablesArray
+
     // Copiar las correlativas actuales
     for (int i = 0; i < materia->correlativasLength; i++)
     {

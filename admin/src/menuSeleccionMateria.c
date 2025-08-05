@@ -6,7 +6,7 @@
 
 // materiasArray es un puntero doble por si al momento de filtrar quedan menos elementos entoces se tiene que Realocar
 // el puntero apunta a un puntero que podria cambiar (si la cantidad de materias cambia entonces el materiasLength tambien cambia)
-void menuSeleccionMateria(char *titulo, ptr_funcion_editar_eliminar_materia_t funcion)
+void menuSeleccionMateria(char *titulo, char *tituloFuncion, ptr_funcion_editar_eliminar_materia_t funcion)
 {
     int opcion;
 
@@ -39,6 +39,7 @@ void menuSeleccionMateria(char *titulo, ptr_funcion_editar_eliminar_materia_t fu
                 printf("%d - %s\n", i + 1, materiasArray[i].nombre);
             }
         }
+
         printf("\nSeleccione una opcion: ");
         scanf("%d", &opcion);
         limpiarBuffer();
@@ -49,7 +50,6 @@ void menuSeleccionMateria(char *titulo, ptr_funcion_editar_eliminar_materia_t fu
         }
         else if (opcion >= 1 && opcion <= *materiasLength)
         {
-            char tituloFuncion[15] = "EDITAR MATERIA";
             int indexMateriaSeleccionada = opcion - 1;
             funcion(tituloFuncion, &materiasArray[opcion - 1], materiasLength, &materiasArray);
         }

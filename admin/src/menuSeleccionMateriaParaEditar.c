@@ -7,5 +7,7 @@ void menuSeleccionMateriaParaEditar()
 {
     char titulo[20] = "EDITAR MATERIAS";
 
-    menuSeleccionMateria(titulo, menuEditarMateria);
+    char tituloFuncion[20] = "EDITAR MATERIA";
+
+    menuSeleccionMateria(titulo, tituloFuncion, menuEditarMateria);
 }

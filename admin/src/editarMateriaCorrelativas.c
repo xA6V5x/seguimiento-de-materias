@@ -34,13 +34,12 @@ void editarMateriaCorrelativas(materia_archivo_t *materia)
         // Buscar y guardar la informacion de la materia correlativa
         for (int i = 0; i < *correlativasLength; i++)
         {
-            correlativasArray = miMalloc("array de materias correlativas", sizeof(materia_archivo_t) * (*correlativasLength));
             materia_archivo_t *materiaBuscada = buscarMateriaPorId(NULL, correlativasArrayId[i], *materiasLength, materiasArray);
             copiarMateria(&correlativasArray[i], materiaBuscada);
         }
 
         // Ordenas las materias correlativas
-        // sortMateriasPorNombre(*correlativasLength, correlativasArray);
+        sortMateriasPorNombre(*correlativasLength, correlativasArray);
 
         // -----------------------------------------------------------------------------------------
 

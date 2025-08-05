@@ -3,14 +3,11 @@
 #include <string.h>
 #include "../headers/funciones.h"
 
-void confirmarEliminarMateria(materia_archivo_t *materia, int materiasLength, materia_archivo_t *materiasArray)
+void confirmarEliminarMateria(char *materiaNombre, int materiasLength, materia_archivo_t *materiasArray)
 {
   char confirmarEliminacion[1];
   int isPressedS = 0;
   int isPressedN = 0;
-
-  char *materiaNombre = miMalloc("inicializar nombre de la materia", sizeof(char) * materia->nombreLength);
-  strcpy(materiaNombre, materia->nombre);
 
   do
   {
@@ -26,14 +23,11 @@ void confirmarEliminarMateria(materia_archivo_t *materia, int materiasLength, ma
     if (isPressedS)
     {
       actualizarBinMaterias(materiasLength, materiasArray);
-      printf("Se eliminó correctamente la materia %s incluyendo su rol como correlativa.\n", materia->nombre);
+      system("cls");
+      printf("Se elimino correctamente la materia %s incluyendo su rol como correlativa.\n", materiaNombre);
       esperarEnter();
-      free(materiaNombre);
+      // free(materiaNombre); // ERROR
       return;
-    }
-    else if (!isPressedN)
-    {
-      errorOpcionNoValida();
     }
   } while (!isPressedS && !isPressedN);
 
