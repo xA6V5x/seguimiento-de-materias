@@ -12,7 +12,7 @@ void menuMateriaInfo(materia_archivo_t materia, int materiasLength, materia_arch
         // leerBinEstadoDeMateria(&materia); // Lee el estado y lo guarda en materia.estado
         system("cls");
         printf("== MATERIA %s ==\n", materia.nombre);
-        (materia.id != -1) && ("id: %d\n", materia.id);
+        printf("id: %d\n", materia.id);
         printf("nombre: %s\n", materia.nombre);
         printf("correlativas: ");
         printMateriasCorrelativas(materia, materiasLength, materiasArray);
@@ -27,7 +27,7 @@ void menuMateriaInfo(materia_archivo_t materia, int materiasLength, materia_arch
         switch (opcion)
         {
         // case 1:
-        //     menuEditarEstadoDeMateria(&materia);
+        // menuEditarEstadoDeMateria(&materia);
         //     break;
         case 0:
             break;

@@ -51,6 +51,7 @@ bin/ # Datos principales de lectura (materias.dat y materias-length.dat)
 
 cli/
 ├── bin/ # Cache de estado por materia (${materiaId}.dat es un int)
+├── config/ # Opciones del menu principal junto con el id de la funcion a utilizar
 ├── docs/ # Documentación técnica
 ├── headers/ # Archivos .h (declaraciones de funciones)
 ├── res/ # Recursos (logo app)
@@ -60,7 +61,7 @@ cli/
 
 ---
 
-## 📚 Estados de materia
+## 💾 Archivos de estado
 
 Cada materia puede tener un estado asignado por el alumno. Estos estados son:
 
@@ -71,10 +72,6 @@ Cada materia puede tener un estado asignado por el alumno. Estos estados son:
 | Siguiente cuatrimestre | 3     |
 | Final pendiente        | 4     |
 | Aprobada               | 5     |
-
----
-
-## 💾 Archivos de estado
 
 Los estados asignados se guardan de forma local en archivos `${materiaId}.dat` (materiaId es un `int`) ubicados en `cli/bin/`:
 
@@ -90,6 +87,28 @@ cli/
 Cada archivo `${materiaId}.dat` contiene un entero (`int`) entre 1 y 5 que representa el estado de la materia correspondiente.
 
 > ⚠️ Estos archivos son independientes de los datos globales de materias (ubicados en `seguimiento-de-materias/bin/`) y solo afectan la vista del alumno.
+
+---
+
+## 📚 Archivo Config
+
+La carpeta config contiene un archivo llamado menu-principal.txt, el cual se utiliza para poder mostar las opciones y conexiones con funcionalidades en el menu principal.
+Si este archivo no existe la aplicacion no sera funcional.
+
+```
+cli/
+└── config/
+    └── menu-principal.txt
+```
+
+La estructura de menu-principal.txt es:
+
+```
+cantidadDeOpciones,
+funcionId, textoLength, texto
+funcionId, textoLength, texto
+...
+```
 
 ---
 
