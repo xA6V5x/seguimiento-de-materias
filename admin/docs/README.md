@@ -6,7 +6,7 @@ Al ejecutar `seguimiento-de-materias.exe`, primero se lee el archivo `admin/conf
      == ADMINISTRAR MATERIAS ==
      1 - Editar Materias
      2 - Crear Materia
-     3 - Eliminar Materias
+     3 - Eliminar Materia
      ----------------------------------------
      0 - Salir
 ```
@@ -68,45 +68,124 @@ typedef struct
   == EDITAR MATERIAS ==
   0 - Volver
   ---------------------------------------------------
-  1 - Algebra-1
-  2 - Fisica-1
-  3 - Introduccion a la Ingenieria
-  4 - Matematica-1
+  1 - algebra-1
+  2 - fisica-1
+  3 - introduccion a la ingenieria
+  4 - matematica-1
   ...
   ```
 
 - ### Permite seleccionar una materia y ver mas de su informacion.
 
   - Se accede a los datos de la materia seleccionada haciendo `materiasArray[numeroIngresado - 1]`, dado a que numeroIngresado es el `index + 1`.
-  - Los datos se envian a otra funcion que obtiene el estado de la materia ingresando a `bin/${materiaId}.dat`.
-  - Guardar dicho estado en `materiasArray[index].estado`.
-  - Mostrar en pantalla todos los datos.
+  - Los datos se envian a otra funcion que permite editarla.
 
     ```
-    == MATERIA Fisica-1 ==
+    == MATERIA fisica-1 ==
     id: 4
-    1 - nombre: Fisica-1
-    2 - correlativas: Matematica-1, Algebra-1
+    1 - nombre: fisica-1
+    2 - correlativas: matematica-1, algebra-1
     ---------------------------------------------------
     3 - Confirmar
     0 - Cancelar
     ```
 
-- ### Permite editar el estado personal de la materia seleccionada.
-  - Se muestra en pantalla las opciones pre-establecidas de cada uno de los 5 estados.
-  - Si el estado seleccionado es 5 (Aprobado), primero checkear que sus correlatividades hayan sido Aprobadas (con `bin/${materiaId}.dat` = 5). De no haber sido aprobada se devuelve el `Error` "La materia requiere que la correlativa ${nombre} haya sido aprobada". Devolver a la seleccion de estado.
-  - Al seleccionar uno se acutualiza el archivo `bin/${materiaId}.dat` con el nuevo valor (`int`) seleccionado.
-  ```
-  == NUEVO ESTADO DE Fisica-1 ==
-  1 - no cursada
-  2 - en curso
-  3 - siguiente cuatrimestre
-  4 - final pendiente
-  5 - aprobada
-  ---------------------------------------------------
-  0 - Cancelar
-  ```
+  - Confirmar es usado luego de haber editado la materia, guardando los nuevos datos en materias.dat
+
+- ### Permite editar el nombre y correlatividades de la materia seleccionada.
+
+  - Al querer modificar el nombre lo que se escriba se pasa a toLowerCase (todo minuscula).
+  - Se compara si es que existe alguna otra materia con el mismo nombre. En caso de que asi sea se devuelve el error "El nombre de la materia ingresado ya existe, por favor elige otro".
+  - Si se quiere editar las correlatividades, primero se generan 2 arrays a base de materiasArray:
+    - Con la informacion de materiasArray[i].correlativas (array de materiasId int) generamos el "correlativasArray" (se agarra un id de materia del materiasArray[i].correlativas[j], se busca por id en materiasArray para completar la informacion).
+    - noCorrelativasArray es una copia de materiasArray a la cual se le eliminan las materias presentes en materiasArray[i].correlativas.
+  - Con los arrays (correlativasArray y noCorrelativasArray) se genera un menu interactivo para poder quitar y añadir materias (dependiendo si se encuentra o no actualmente en el materia.correlativas).
+
+    ```
+    == SELECCIONAR CORRELATIVAS ==
+    0 - Cancelar
+    ---------------------------------------------------
+    1 - matematica-1 [ Quitar ] X
+    2 - algebra-1 [ Quitar ] X
+    ---------------------------------------------------
+    3 - matematica-2 [ Agregar ]
+    ...
+    ```
+
   - Volver a la Card de la Materia.
+
+### 2. Crear Materia
+
+- ### Permite crear una nueva materia.
+
+  - Se reserva espacio para una variable del tipo `materia_archivo_t`.
+  - Se checkea cual es el ultimo id disponible en contador-id.dat
+
+    ```
+     == CREAR MATERIA  ==
+     id: 5
+     1 - nombre: --
+     2 - correlativas: --
+     ---------------------------------------------------------------
+     3 - Confirmar
+     0 - Cancelar
+    ```
+
+  - Confirmar es usado luego de haber editado la materia, guardando los nuevos datos en materias.dat
+
+- ### Permite crear el nombre y agregar correlatividades.
+
+  - Al querer modificar el nombre lo que se escriba se pasa a toLowerCase (todo minuscula).
+  - Se compara si es que existe alguna otra materia con el mismo nombre. En caso de que asi sea se devuelve el error "El nombre de la materia ingresado ya existe, por favor elige otro".
+  - Si se quiere editar las correlatividades, primero se generan 2 arrays a base de materiasArray:
+    - Con la informacion de materiasArray[i].correlativas (array de materiasId int) generamos el "correlativasArray" (se agarra un id de materia del materiasArray[i].correlativas[j], se busca por id en materiasArray para completar la informacion).
+    - noCorrelativasArray es una copia de materiasArray a la cual se le eliminan las materias presentes en materiasArray[i].correlativas.
+  - Con los arrays (correlativasArray y noCorrelativasArray) se genera un menu interactivo para poder quitar y añadir materias (dependiendo si se encuentra o no actualmente en el materia.correlativas).
+
+    ```
+     == SELECCIONAR CORRELATIVAS ==
+     0 - Cancelar
+     ---------------------------------------------------
+     1 - matematica-1 [ Quitar ] X
+     2 - algebra-1 [ Quitar ] X
+     ---------------------------------------------------
+     3 - matematica-2 [ Agregar ]
+     ...
+    ```
+
+  - Volver a la Card de la Materia.
+
+### 3. Eliminar Materia
+
+- ### Muestra todas las materias registradas.
+
+  - Lee `../bin/materias-length.dat` el cual contiene un entero (`int`).
+  - Reservar memoria para `materiasArray` (materiasLength \* sizeof(materia_t)).
+  - Lee `../bin/materias.dat` cuya estructura es `materia_archivo_t`.
+  - Guardar los datos de `materias.dat` en `materiasArray`.
+  - Ordenar las materias de la A-Z.
+  - Iterar en `materiasArray` para mostrar el listado de materias junto con su index + 1, de forma tal que `index + 1` - `NombreDeMateria`.
+
+  ```
+  == ELIMINAR MATERIA ==
+  0 - Volver
+  ---------------------------------------------------
+  1 - algebra-1
+  2 - fisica-1
+  3 - introduccion a la ingenieria
+  4 - matematica-1
+  ...
+  ```
+
+- ### Permite seleccionar una materia a eliminar.
+
+  - Se accede a los datos de la materia seleccionada haciendo `materiasArray[numeroIngresado - 1]`, dado a que numeroIngresado es el `index + 1`.
+  - Los datos se envian a otra funcion que permite eliminarla.
+  - Dicha funcion primero tiene un mensaje de confirmacion "Seguro que quiere eliminar ${Materia}? (S/N)" de presionar "N" se regresa al listado de materias, si se presiona "S" se continua con la eliminacion.
+  - Eliminar la materiaId de aquellas materias que la tienen de correlativa: { ..., correlativas: [ _materiaId_, otraMateriaId, ... ] }
+  - Eliminar materia del materiasArray.
+  - Guardar el array editado en materias.dat y a materias-length.dat restarle 1 (-1).
+  - Una vez actualizado el materias.dat se vuelve al listado de materias para eliminar (notece que ya no esta presente la materia eliminada).
 
 ### 0. Salir
 
