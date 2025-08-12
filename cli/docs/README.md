@@ -64,13 +64,24 @@ Al ejecutar `seguimiento-de-materias.exe`, primero se lee el archivo `cli/config
 
 ## 📘 Opciones del menú:
 
+#### Inicializar estados
+
+- Para evitar errores de lectura de archivos de estados de materia, lo que se hace es leer `../bin/materias-length.dat`.
+- Reservar memoria para `materiasArray` (materiasLength \* sizeof(materia_t)).
+- Lee `../bin/materias.dat` cuya estructura es `materia_archivo_t`.
+- Guardar los datos de `materias.dat` en `materiasArray`.
+- Iterar por cada materia y checkar si existe su respectivo archivo de estado en `bin/${materiaId}.dat`.
+- Si existe pasar a la siguiente materia, si no existe crear el archivo con valor 1 (No cursada).
+
+#### Inicializar menu
+
 - Abrir el archivo `cli/config/menu-principal.txt` para lectura y verificar que exista.
 - Leer primero la cantidad de opciones (el primer dato int) para reservar memoria para el `opcionesArray` (sizeof(opcion_accion_t) \* opcionesLength).
 - Iterar en el archivo para ir guardando los datos del `funcionId` y `textLength`.
 - Reservar memoria dentro del `opcionesArray[i].text` (sizeof(char) \* textLength + 1); el +1 es para poder agragarle el `'\0'`.
 - Leer y almacenar el text con `fgets(opcionesArray[i].text, textLength + 1, fp)`.
 - Usar el funcionId para poder almacenar la funcion en el objeto `opcionesArray[i].funcion = funcionesArray[funcionIndex]`.
-- Por ultimo, almacenar los datos en un objeto `opciones_acciones_t` para su comodo uso `{ opcionesLength, opcionesArray, };`
+- Almacenar los datos en un objeto `opciones_acciones_t` para su comodo uso `{ opcionesLength, opcionesArray, };`
 
 ### 1. Ver listado de materias
 
@@ -116,7 +127,6 @@ Al ejecutar `seguimiento-de-materias.exe`, primero se lee el archivo `cli/config
   - Se muestra en pantalla las opciones pre-establecidas de cada uno de los 5 estados.
   - Si el estado seleccionado es 5 (Aprobado), primero checkear que sus correlatividades hayan sido Aprobadas (con `bin/${materiaId}.dat` = 5). De no haber sido aprobada se devuelve el `Error` "La materia requiere que la correlativa ${nombre} haya sido aprobada". Devolver a la seleccion de estado.
   - Al seleccionar uno se acutualiza el archivo `bin/${materiaId}.dat` con el nuevo valor (`int`) seleccionado.
-  - Volver a la Card de la Materia.
   ```
   == NUEVO ESTADO DE Fisica-1 ==
   1 - no cursada
@@ -127,6 +137,7 @@ Al ejecutar `seguimiento-de-materias.exe`, primero se lee el archivo `cli/config
   ---------------------------------------------------
   0 - Cancelar
   ```
+  - Volver a la Card de la Materia.
 
 ### 2. Filtrar materias Cursables
 
