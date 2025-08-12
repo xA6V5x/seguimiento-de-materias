@@ -1,3 +1,0 @@
-Documentar el uso tecnico de las funciones.
-
-Diagrama de Flujo de la App en PcInt.
