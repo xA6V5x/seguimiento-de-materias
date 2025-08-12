@@ -40,7 +40,7 @@ Al ejecutar `seguimiento-de-materias.exe`, primero se lee el archivo `cli/config
     typedef struct {
          int id;
          int nombreLength;
-         char nombre;
+         char *nombre;
          int correlativasLength;
          int *correlativas; // Contiene materias ID
     } materia_archivo_t;
@@ -49,7 +49,7 @@ Al ejecutar `seguimiento-de-materias.exe`, primero se lee el archivo `cli/config
     typedef struct {
          int id;
          int nombreLength;
-         char nombre;
+         char *nombre;
          int correlativasLength;
          int *correlativas; // Contiene materias ID
          int estado; // Entre 1 y 5

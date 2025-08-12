@@ -34,9 +34,9 @@ seguimiento-de-materias/
   typedef struct {
   int id; // ID único de la materia
   int nombreLength; // Largo del nombre
-  char nombre[nombreLength]; // Nombre de la materia
+  char *nombre; // Nombre de la materia
   int correlativasLength; // Cantidad de correlativas
-  int *correlativas[correlativasLength]; // IDs de materias correlativas
+  int *correlativas; // IDs de materias correlativas
   } materia_archivo_t;
   ```
 

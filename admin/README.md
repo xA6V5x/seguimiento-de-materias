@@ -76,12 +76,12 @@ seguimiento-de-materias/
 
   ```c
   typedef struct {
-    int id;                     // ID único de la materia
-    int nombreLength;          // Largo del nombre
-    char nombre[nombreLength]; // Nombre de la materia
-    int correlativasLength;    // Cantidad de correlativas
-    int correlativas[correlativasLength]; // IDs de materias correlativas
-  } MateriaArchivo;
+  int id; // ID único de la materia
+  int nombreLength; // Largo del nombre
+  char *nombre; // Nombre de la materia
+  int correlativasLength; // Cantidad de correlativas
+  int *correlativas; // IDs de materias correlativas
+  } materia_archivo_t;
   ```
 
 Este módulo trabaja directamente sobre los archivos` materias.dat` y `materias-length.dat`.
