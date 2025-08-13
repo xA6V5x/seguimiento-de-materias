@@ -97,19 +97,20 @@ typedef struct
   - Al querer modificar el nombre lo que se escriba se pasa a toLowerCase (todo minuscula).
   - Se compara si es que existe alguna otra materia con el mismo nombre. En caso de que asi sea se devuelve el error "El nombre de la materia ingresado ya existe, por favor elige otro".
   - Si se quiere editar las correlatividades, primero se generan 2 arrays a base de materiasArray:
-    - Con la informacion de materiasArray[i].correlativas (array de materiasId int) generamos el "correlativasArray" (se agarra un id de materia del materiasArray[i].correlativas[j], se busca por id en materiasArray para completar la informacion).
-    - noCorrelativasArray es una copia de materiasArray a la cual se le eliminan las materias presentes en materiasArray[i].correlativas.
+    - Con la informacion de materiasArray[i].correlativas (array de materiasId int) generamos el "correlativasArray" (se agarra un id de materia del materiasArray[i].correlativas[j], se busca por id en materiasArray para completar la informacion); y es ordenado de la A-Z.
+    - noCorrelativasArray es una copia de materiasArray a la cual se le eliminan las materias presentes en materiasArray[i].correlativas; y es ordenado de la A-Z.
   - Con los arrays (correlativasArray y noCorrelativasArray) se genera un menu interactivo para poder quitar y añadir materias (dependiendo si se encuentra o no actualmente en el materia.correlativas).
 
     ```
-    == SELECCIONAR CORRELATIVAS ==
-    0 - Cancelar
-    ---------------------------------------------------
-    1 - matematica-1 [ Quitar ] X
-    2 - algebra-1 [ Quitar ] X
-    ---------------------------------------------------
-    3 - matematica-2 [ Agregar ]
-    ...
+     == SELECCIONAR CORRELATIVAS ==
+     0 - Cancelar
+     ---------------------------------------------------
+     1 - algebra-1 [ Quitar ] X
+     2 - matematica-1 [ Quitar ] X
+     ---------------------------------------------------
+     3 - fisica-1 [ Agregar ]
+     4 - matematica-2 [ Agregar ]
+     ...
     ```
 
   - Volver a la Card de la Materia.
@@ -138,18 +139,19 @@ typedef struct
   - Al querer modificar el nombre lo que se escriba se pasa a toLowerCase (todo minuscula).
   - Se compara si es que existe alguna otra materia con el mismo nombre. En caso de que asi sea se devuelve el error "El nombre de la materia ingresado ya existe, por favor elige otro".
   - Si se quiere editar las correlatividades, primero se generan 2 arrays a base de materiasArray:
-    - Con la informacion de materiasArray[i].correlativas (array de materiasId int) generamos el "correlativasArray" (se agarra un id de materia del materiasArray[i].correlativas[j], se busca por id en materiasArray para completar la informacion).
-    - noCorrelativasArray es una copia de materiasArray a la cual se le eliminan las materias presentes en materiasArray[i].correlativas.
+    - Con la informacion de materiasArray[i].correlativas (array de materiasId int) generamos el "correlativasArray" (se agarra un id de materia del materiasArray[i].correlativas[j], se busca por id en materiasArray para completar la informacion); y es ordenado de la A-Z.
+    - noCorrelativasArray es una copia de materiasArray a la cual se le eliminan las materias presentes en materiasArray[i].correlativas; y es ordenado de la A-Z.
   - Con los arrays (correlativasArray y noCorrelativasArray) se genera un menu interactivo para poder quitar y añadir materias (dependiendo si se encuentra o no actualmente en el materia.correlativas).
 
     ```
      == SELECCIONAR CORRELATIVAS ==
      0 - Cancelar
      ---------------------------------------------------
-     1 - matematica-1 [ Quitar ] X
-     2 - algebra-1 [ Quitar ] X
+     1 - algebra-1 [ Quitar ] X
+     2 - matematica-1 [ Quitar ] X
      ---------------------------------------------------
-     3 - matematica-2 [ Agregar ]
+     3 - fisica-1 [ Agregar ]
+     4 - matematica-2 [ Agregar ]
      ...
     ```
 
