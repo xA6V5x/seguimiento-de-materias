@@ -3,7 +3,7 @@
 #include "../headers/funciones.h"
 #include "../headers/types.h"
 
-void menuMateriaInfo(materia_t materia, int materiasLength, materia_t *materiasArray)
+void menuMateriaInfo(materia_t materia)
 {
     int opcion;
 
@@ -15,7 +15,7 @@ void menuMateriaInfo(materia_t materia, int materiasLength, materia_t *materiasA
         printf("id: %d\n", materia.id);
         printf("nombre: %s\n", materia.nombre);
         printf("correlativas: ");
-        printMateriasCorrelativas(materia, materiasLength, materiasArray);
+        printMateriasCorrelativas(materia);
         printf("estado: ");
         printEstadoMateria(materia.estado);
         printf("-------------------------------\n");

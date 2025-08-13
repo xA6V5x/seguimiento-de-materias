@@ -46,7 +46,7 @@ void menuSeleccionMateria(int estadoId, char *titulo, int *materiasLength, mater
         else if (opcion >= 1 && opcion <= *materiasLength)
         {
             int indexMateriaSeleccionada = opcion - 1;
-            menuMateriaInfo((*materiasArray)[indexMateriaSeleccionada], *materiasLength, *materiasArray);
+            menuMateriaInfo((*materiasArray)[indexMateriaSeleccionada]);
         }
         else
         {
