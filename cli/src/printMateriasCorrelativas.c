@@ -3,8 +3,14 @@
 #include "../headers/funciones.h"
 #include "../headers/types.h"
 
-void printMateriasCorrelativas(materia_t materia, int materiasLength, materia_t *materiasArray)
+void printMateriasCorrelativas(materia_t materia)
 {
+    materias_t materias = leerBinDeMaterias();
+
+    int materiasLength = materias.length;
+
+    materia_t *materiasArray = materias.array;
+
     int correlativasLength = materia.correlativasLength;
 
     if (correlativasLength > 0)

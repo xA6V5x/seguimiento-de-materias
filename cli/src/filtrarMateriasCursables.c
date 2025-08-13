@@ -6,7 +6,12 @@
 
 void filtrarMateriasCursables(int estadoId, int *materiasLength, materia_t **materiasArray)
 {
-    // Refrescar sus estados
+
+    materias_t materias = leerBinDeMaterias();
+
+    // Obtener todas las materias para poder renovar el filtro
+    *materiasLength = materias.length;
+    *materiasArray = materias.array;
     refrescarEstadosDeMaterias(*materiasLength, *materiasArray);
 
     // Inicializar un contador (para saber cuantas materias son cursables)
@@ -84,7 +89,32 @@ void filtrarMateriasCursables(int estadoId, int *materiasLength, materia_t **mat
         // En caso de que la materia no tenga correlativas ya es cursable
         if (materia->correlativasLength == 0)
         {
-            materiasCursablesLength++;
+            // Copiar materia id
+            materiaCpy->id = materia->id;
+
+            // Copiar nombre
+            materiaCpy->nombreLength = materia->nombreLength;
+            materiaCpy->nombre = miMalloc("el nombre de las materias cursables.", sizeof(char) * (materiaCpy->nombreLength + 1));
+            strcpy(materiaCpy->nombre, materia->nombre);
+
+            // Copiar correlativas
+            materiaCpy->correlativasLength = materia->correlativasLength;
+            if (materiaCpy->correlativasLength > 0)
+            {
+                materiaCpy->correlativas = miMalloc("las correlativas de las materias cursables.", sizeof(int) * materiaCpy->correlativasLength);
+                for (int j = 0; j < materiaCpy->correlativasLength; j++)
+                {
+                    materiaCpy->correlativas[j] = materia->correlativas[j];
+                };
+            }
+            else
+            {
+                materiaCpy->correlativas = NULL;
+            }
+
+            // Copiar estado
+            materiaCpy->estado = materia->estado;
+            indexCount++;
             continue;
         };
 

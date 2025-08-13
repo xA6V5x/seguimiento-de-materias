@@ -3,7 +3,6 @@
 #include "types.h"
 
 // Archivos
-void crearArchivosMock();
 void crearArchivosDeEstado();
 opciones_acciones_t leerTxtConfig(const ptr_funcion_void_t *funcionesArray);
 materias_t leerBinDeMaterias();
@@ -28,13 +27,13 @@ void menuMateriasEnCurso();
 void menuMateriasSiguienteCuatrimestre();
 void menuMateriasFinalPendiente();
 void menuMateriasAprobadas();
-void menuMateriaInfo(materia_t materia, int materiasLength, materia_t *materiasArray);
+void menuMateriaInfo(materia_t materia);
 void menuEditarEstadoDeMateria(materia_t *materia);
 
 // Texto
 void printMenuPrincipal(const int opcionesArrayLength, const opcion_accion_t *opcionesArray);
 void printEstadoMateria(int estado);
-void printMateriasCorrelativas(materia_t materia, int materiasLength, materia_t *materiasArray);
+void printMateriasCorrelativas(materia_t materia);
 int confirmarCierreDelPrograma();
 
 // Errores
